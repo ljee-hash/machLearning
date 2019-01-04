@@ -15,6 +15,7 @@ before_install:
 install:
   - npm install gitbook-cli -g
   # 安装 gitbook 插件
+  - gitbook init
   - gitbook install
 
 # 构建脚本
