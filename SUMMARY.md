@@ -17,8 +17,15 @@
         * [Tornado框架](advanced/program/program-tornado.md)
         * [Linux和自动化运维](advanced/program/program-linux-autodeployed.md)
 * [3 高等数学](chapter2/README.md)
-    * [3.1 数学、算法、微积分、概率论]
-    * [3.2 统计机器学习概率与算法]
+    * [3.1 数学、算法、微积分、概率论](chapter2/machlearning-model.md)
+    * [3.2 统计机器学习概率与算法](chapter2/machlearning-probability-theory.md)
+        * [3.2.1 概率基础](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.2 随机变量](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.3 高斯分布](chapter2/probability-theory-alth/probability-basic.md)
+	* [3.2.4 连续分布](chapter2/probability-theory-alth/probability-basic.md)
+	* [3.2.5 jeffrey prior](chapter2/probability-theory-alth/probability-jeffrey-prior.md)
+	* [3.2.6 scale mixture pisribarin](chapter2/probability-theory-alth/probability-scale-mixture-pisribarin.md)
+	* [3.2.7 statistic-interence](chapter2/probability-theory-alth/probability-statistic-interence.md)
     * [3.3 深度学习模型](chapter2/machlearning-model.md)
         * [3.3.1 机器学习数学基础](chapter2/machlearning-model.md)
         * [3.3.2 高效计算基础与图像线性分类器]
