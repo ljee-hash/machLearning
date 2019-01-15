@@ -40,8 +40,8 @@
         * [3.2.19 Entropy](chapter2/probability-theory-alth/matrix-meta-prior.md)
     * [3.3 深度学习模型](chapter2/machlearning-model.md)
         * [3.3.1 机器学习数学基础](chapter2/machlearning-model.md)
-        * [3.3.2 高效计算基础与图像线性分类器]
-        * [3.3.3 梯度下降法与反向传播]
+        * [3.3.2 高效计算基础与图像线性分类器](chapter2/machlearning-model.md)
+        * [3.3.3 梯度下降法与反向传播](chapter2/machlearning-model.md)
 * [4 算法基础提高](chapter3/README.md)
 	* [4.1 机器学习算法基础](chapter3/algorithms/algorithms-basic.md)
         * [4.1.1 管窥算法](chapter3/algorithms/algorithms-kernel.md)
