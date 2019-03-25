@@ -15,12 +15,14 @@ Tornado全称Tornado Web Server，是一个用Python语言写成的Web服务器�
 Tornado有着优异的性能。它试图解决C10k问题，即处理大于或等于一万的并发，下表是和一些其他Web框架与服务器的对比:
 
 处理器为 AMD Opteron, 主频2.4GHz, 4核[2]
-服务	部署	请求/每秒
-Tornado	nginx, 4进程	8213
-Tornado	1个单线程进程	3353
-Django	Apache/mod_wsgi	2223
-web.py	Apache/mod_wsgi	2066
-CherryPy	独立	785
+服务                                                                                                      | 部署                                                                                                             | 请求/每秒
+------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -----
+Tornado                                                                                                 | [nginx](https://zh.wikipedia.org/wiki/Nginx "Nginx"), 4进程                                                      | 8213 
+Tornado                                                                                                 | 1个单线程进程                                                                                                        | 3353 
+[Django](https://zh.wikipedia.org/wiki/Django "Django")                                                 | Apache/[mod_wsgi](https://zh.wikipedia.org/w/index.php?title=Mod_wsgi&action=edit&redlink=1 "Mod wsgi（页面不存在）") | 2223 
+web.py                                                                                                  | Apache/mod_wsgi                                                                                                | 2066 
+[CherryPy](https://zh.wikipedia.org/w/index.php?title=CherryPy&action=edit&redlink=1 "CherryPy（页面不存在）") | 独立                                                                                                             | 785  
+
 
 ## 参考
 
