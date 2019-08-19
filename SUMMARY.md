@@ -1,4 +1,4 @@
-# Summary
+# 目录
 
 * [前言](README.md)
 * [1 安装手册](install/README.md)
@@ -17,12 +17,31 @@
         * [Tornado框架](advanced/program/program-tornado.md)
         * [Linux和自动化运维](advanced/program/program-linux-autodeployed.md)
 * [3 高等数学](chapter2/README.md)
-    * [3.1 数学、算法、微积分、概率论]
-    * [3.2 统计机器学习概率与算法]
+    * [3.1 数学、算法、微积分、概率论](chapter2/machlearning-model.md)
+    * [3.2 统计机器学习概率与算法](chapter2/machlearning-probability-theory.md)
+        * [3.2.1 概率基础](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.2 随机变量](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.3 高斯分布](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.4 连续分布](chapter2/probability-theory-alth/probability-basic.md)
+        * [3.2.5 jeffrey prior](chapter2/probability-theory-alth/probability-jeffrey-prior.md)
+        * [3.2.6 scale mixture pisribarin](chapter2/probability-theory-alth/probability-scale-mixture-pisribarin.md)
+        * [3.2.7 statistic-interence](chapter2/probability-theory-alth/probability-statistic-interence.md)
+        * [3.2.8 拉普拉斯变换](chapter2/probability-theory-alth/laplace-transform.md)
+        * [3.2.9 多元分布定义](chapter2/probability-theory-alth/multi-prior.md)
+        * [3.2.10 Jocobian](chapter2/probability-theory-alth/Jocobian.md)
+        * [3.2.11 Wedge production](chapter2/probability-theory-alth/Wedge-production.md)
+        * [3.2.12 wishart分布](chapter2/probability-theory-alth/wishart.md)
+        * [3.2.13 多元正态分布](chapter2/probability-theory-alth/wishart.md)
+        * [3.2.14 统计量](chapter2/probability-theory-alth/wishart.md)
+        * [3.2.15 矩阵元Beta分布](chapter2/probability-theory-alth/matrix-meta-prior.md)
+        * [3.2.16 共轭先验性质](chapter2/probability-theory-alth/matrix-Raiffa-prior.md)
+        * [3.2.17 统计量充分统计量](chapter2/probability-theory-alth/matrix-meta-prior.md)
+        * [3.2.18 指数型分布](chapter2/probability-theory-alth/matrix-meta-prior.md)
+        * [3.2.19 Entropy](chapter2/probability-theory-alth/matrix-meta-prior.md)
     * [3.3 深度学习模型](chapter2/machlearning-model.md)
         * [3.3.1 机器学习数学基础](chapter2/machlearning-model.md)
-        * [3.3.2 高效计算基础与图像线性分类器]
-        * [3.3.3 梯度下降法与反向传播]
+        * [3.3.2 高效计算基础与图像线性分类器](chapter2/machlearning-model.md)
+        * [3.3.3 梯度下降法与反向传播](chapter2/machlearning-model.md)
 * [4 算法基础提高](chapter3/README.md)
     * [4.1 机器学习算法基础](chapter3/algorithms/algorithms-basic.md)
         * [4.1.1 管窥算法](chapter3/algorithms/algorithms-kernel.md)
@@ -75,5 +94,5 @@
     * [7.1.3 Word2Vec实战案例](chapter6/nlp/word2Vec-practice.md)
     * [7.1.4 从Word2Vec到FastText的发展趋势](chapter6/nlp/word2Vec-fastText-advance.md)
 * [8 面试技巧](chapter7/README.md)
-* [9 问题集合](question/DeepLearningBookQA_cn,md)
+* [9 问题集合](question/DeepLearningBookQA_cn.md)
 
