@@ -97,6 +97,7 @@
     * [7.2 自动机及其应用/文本自动矫正/歧义消除](chapter6/nlp2/nlp-word2vec-apply.md)
     * [7.3 语言模型/平滑方法](chapter6/nlp3/language-model-vs-smoothing-method.md)
     * [7.4 概率图模型](chapter6/nlp4/language-model-vs-smoothing-method.md)
+    * [7.6 中文分词专题](chapter6/nlp6/chinese-segementation-words.md)
 * [8 面试技巧](chapter7/README.md)
 * [9 问题集合](question/DeepLearningBookQA_cn.md)
 
