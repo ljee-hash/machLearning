@@ -99,8 +99,11 @@
       * [5.1.9 神经网络NN算法](chapter4/base/deeped-learning-NN-theory.md)
       * [5.1.10 神经网络NN算法-应用上篇](chapter4/base/deeped-learning-NN-apply-1.md)
       * [5.1.11 神经网络NN算法-应用下篇](chapter4/base/deeped-learning-NN-apply-2.md)
-      * [5.1.12 简单线性回归算法-上篇](chapter4/base/deeped-learning-linear-theory-1.md)
-      * [5.1.13 简单线性回归算法-下篇](chapter4/base/deeped-learning-linear-theory-2.md)
+      * [5.1.12 简单线性回归算法-上篇](chapter4/base/deeped-learning-linear-regression-theory-1.md)
+      * [5.1.13 简单线性回归算法-下篇](chapter4/base/deeped-learning-linear-regression-theory-2.md)
+      * [5.1.14 多元线性回归算法-上篇](chapter4/base/deeped-learning-MLR-theory-1.md)
+      * [5.1.15 多元线性回归算法-下篇](chapter4/base/deeped-learning-MLR-theory-2.md)
+      
    * [5.2 深度学习基础进阶](chapter4/base/deeped-learning-basic-advanced.md)
    * [5.2 深度学习框架](chapter4/base/deeped-learning-framework-advanced.md)
 * [6 数据分析与挖掘](chapter5/README.md)
