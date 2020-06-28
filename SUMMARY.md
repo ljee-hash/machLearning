@@ -104,6 +104,8 @@
       * [5.1.14 多元线性回归算法-上篇](chapter4/base/deeped-learning-MLR-theory-1.md)
       * [5.1.15 多元线性回归算法-下篇](chapter4/base/deeped-learning-MLR-theory-2.md)
       * [5.1.16 非线性回归/逻辑回归](chapter4/base/deeped-learning-logistic-regression-overviews.md)
+      * [5.1.17 回归中的相关度和决定系数](chapter4/base/Correlation-and-coefficient-of-determination-in-regression.md)
+      * [5.1.18 回归中的相关性和R平方值应用](chapter4/base/deeped-learning-coefficient-of-determination.md)
    * [5.2 深度学习基础进阶](chapter4/base/deeped-learning-basic-advanced.md)
    * [5.2 深度学习框架](chapter4/base/deeped-learning-framework-advanced.md)
 * [6 数据分析与挖掘](chapter5/README.md)
