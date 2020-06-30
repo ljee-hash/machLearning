@@ -10,7 +10,7 @@
 
 # 行业发展
 
-2018年Google AI诊断眼疾，竟打包人类医生。继AlphaGo打赢世界围棋冠军后，Google旗下的人工智能公司DeepMind发表新的AI演算法将帮助医生检测50多种眼部相关疾病，诊断的精准度升至超越人类医生。链接请戳<https://cloud.tencent.com/developer/news/298687>
+2018年Google AI诊断眼疾，竟打包人类医生。继AlphaGo打赢世界围棋冠军后，Google旗下的人工智能公司DeepMind发表新的AI演算法将帮助医生检测50多种眼部相关疾病，诊断的精准度升至超越人类医生。[链接请戳](https://cloud.tencent.com/developer/news/298687)
 
 
 
