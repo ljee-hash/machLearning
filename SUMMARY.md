@@ -54,6 +54,8 @@
         * [4.1.2 字符串](chapter3/algorithms/algorithms-string.md)
         * [4.1.3 数组](chapter3/algorithms/algorithms-array.md)
         * [4.1.4 树](chapter3/algorithms/algorithms-tree.md)
+            * [4.1.4.1 二叉树](chapter3/algorithms/algorithms-tree-binary-tree.md)
+            * [4.1.4.2 完全二叉树](chapter3/algorithms/algorithms-tree-complete-binary-tree.md)
         * [4.1.5 链表递归栈](chapter3/algorithms/algorithms-linke-recursion-dstack.md)
         * [4.1.6 查找排序](chapter3/algorithms/algorithms-find-sorts.md)
         * [4.1.7 图论上篇](chapter3/algorithms/algorithms-map-1.md)
