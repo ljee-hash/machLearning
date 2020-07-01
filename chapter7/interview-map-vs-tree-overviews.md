@@ -55,5 +55,107 @@
 **注意** 如果树上只有一个节点，则只需输出其根属性。
 
 
+### Solution
+
+#### 方法一: 使用 `UNION` [Accepted]
+
+**思路:** 
+
+我们可以通过在此表中按其定义判断每个记录来打印节点类型。`Root`：它根本没有父节点 `Inner`：它是某些节点的父节点，并且它本身具有一个非NULL的父节点。 `Leaf`：除上述两个以外的其他情况
+
+**算法:**
+
+我们通过节点类型的定义进行转换，我们可以得到如下代码片段
+
+`Root节点`: 对于Root节点，它没有任何一个Parent节点
+
+
+```sql
+SELECT
+    id, 'Root' AS Type
+FROM
+    tree
+WHERE
+    p_id IS NULL
+```
+
+`Leaf节点`: 对于Leaf节点，除有一个Parent节点之外没有任何Child节点
+
+```sql
+SELECT
+    id, 'Leaf' AS Type
+FROM
+    tree
+WHERE
+    id NOT IN (SELECT DISTINCT
+            p_id
+        FROM
+            tree
+        WHERE
+            p_id IS NOT NULL)
+        AND p_id IS NOT NULL
+```
+
+
+`Inner节点`: 对于Inner节点，有Parent节点,且有Child节点
+
+```sql
+SELECT
+    id, 'Inner' AS Type
+FROM
+    tree
+WHERE
+    id IN (SELECT DISTINCT
+            p_id
+        FROM
+            tree
+        WHERE
+            p_id IS NOT NULL)
+        AND p_id IS NOT NULL
+```
+
+因此，上述问题其中一个解决方案就是通过 `UNION` 连接所有情况.
+
+MySQL
+```
+SELECT
+    id, 'Root' AS Type
+FROM
+    tree
+WHERE
+    p_id IS NULL
+
+UNION
+
+SELECT
+    id, 'Leaf' AS Type
+FROM
+    tree
+WHERE
+    id NOT IN (SELECT DISTINCT
+            p_id
+        FROM
+            tree
+        WHERE
+            p_id IS NOT NULL)
+        AND p_id IS NOT NULL
+
+UNION
+
+SELECT
+    id, 'Inner' AS Type
+FROM
+    tree
+WHERE
+    id IN (SELECT DISTINCT
+            p_id
+        FROM
+            tree
+        WHERE
+            p_id IS NOT NULL)
+        AND p_id IS NOT NULL
+ORDER BY id;
+
+```
 
 
