@@ -158,4 +158,48 @@ ORDER BY id;
 
 ```
 
+#### 方法二: 通过流程控制语句 `CASE` [Accepted]
+
+**算法:**
+
+这个想法与上面的解决方案相似，但是通过利用流控制语句使代码更简单，这有效地基于不同的输入值进行不同的输出。在这种情况下，我们可以使用CASE语句
+
+MySQL
+```sql
+SELECT
+    id AS `Id`,
+    CASE
+        WHEN tree.id = (SELECT atree.id FROM tree atree WHERE atree.p_id IS NULL)
+          THEN 'Root'
+        WHEN tree.id IN (SELECT atree.p_id FROM tree atree)
+          THEN 'Inner'
+        ELSE 'Leaf'
+    END AS Type
+FROM
+    tree
+ORDER BY `Id`
+;
+```
+
+> MySQL 提供流程控制语句除 `CASE`. 还可以使用 `IF` 进行流程控制
+
+#### 方法三: 通过流程控制语句 `IF` [Accepted]
+
+
+**算法:**
+
+使用 `IF` 进行简化
+
+MYSQL
+```sql
+SELECT
+    atree.id,
+    IF(ISNULL(atree.p_id),
+        'Root',
+        IF(atree.id IN (SELECT p_id FROM tree), 'Inner','Leaf')) Type
+FROM
+    tree atree
+ORDER BY atree.id
+```
+
 
