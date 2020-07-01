@@ -57,7 +57,7 @@
 
 ### Solution
 
-#### 方法一: 使用 `UNION` [Accepted]
+#### 方法一: 使用 `sql UNION ` [Accepted]
 
 **思路:** 
 
@@ -117,7 +117,7 @@ WHERE
 因此，上述问题其中一个解决方案就是通过 `UNION` 连接所有情况.
 
 MySQL
-```
+```sql
 SELECT
     id, 'Root' AS Type
 FROM
