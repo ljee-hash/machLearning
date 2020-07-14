@@ -147,6 +147,7 @@
     * [7.3 语言模型/平滑方法](chapter6/nlp3/language-model-vs-smoothing-method.md)
     * [7.4 概率图模型](chapter6/nlp4/language-model-vs-smoothing-method.md)
     * [7.6 中文分词专题](chapter6/nlp6/chinese-segementation-words.md)
+    * [7.7 语音合成专题](chapter6/nlp6/chinese-speech-words.md)
 * [8 面试相关](chapter7/README.md)
     * [8.1 FLAG高频](chapter7/interview-flags.md)
     * [8.2 BATJ高频](chapter7/interview-batj.md)
