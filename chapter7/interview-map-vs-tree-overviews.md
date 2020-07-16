@@ -235,7 +235,7 @@ ORDER BY atree.id
 每次数据库IO都会有时间开销。因此此方案比较适合Tree规模比较小的情况，可以借助于缓存机制来做优化，将Tree信息载入内存进行处理，避免直接对数据库的IO的性能开销
 
 
-### 基于左右值编码的Schema设计
+### 基于左右值编码的Schema设计（前序遍历法）
 
 **优点**
 
@@ -253,6 +253,8 @@ ORDER BY atree.id
 ## 参考文章
 
 [1]. https://www.jianshu.com/p/17a8bc823e63
+
 [2]  https://blog.csdn.net/dreajay/article/details/8894058
+
 [3]  https://www.jianshu.com/p/38179b0c816f
 
