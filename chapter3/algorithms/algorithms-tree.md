@@ -116,6 +116,107 @@ Tree =（root,F）
 > 树型存储结构类似于家族的族谱，各个结点之间也同样可能具有父子、兄弟、表兄弟的关系。本节中，要重点理解树的根结点和子树的定义，同时要会计算树中各个结点的度和层次，以及树的深度。
 
 
+### 树的存储结构
+
+常用的树的存储结构有
+
+1. 双亲表示法
+
+    该表示法用自足地址连续的单元存储树的结点，并在每个结点中附设一个指示器，指出其双亲结点在该存储结构中的位置（结点所在数组元素的下标）
+    显然，这种表示法对于指定结点的双亲和祖先都十分方便，<font color=red>但对于求指定结点的孩子及其后代则需要遍历整个数组</font>
+
+<font color=red>双亲表示法采用顺序表（也就是数组）存储普通树，其实现的核心思想是：顺序存储各个节点的同时，给各节点附加一个记录其父节点位置的变量。</font>
+
+<table><tr><td bgcolor=PowderBlue>注意，根节点没有父节点（父节点又称为双亲节点），因此根节点记录父节点位置的变量通常置为 -1。</td></tr></table>
+
+
+![树的双亲表示法](./../../sources/images/tree-parent-descr.png)
+
+
+**存储过程转换为C语言**
+
+```c 
+
+#define MAX_SIZE 100//宏定义树中结点的最大数量
+typedef char ElemType;//宏定义树结构中数据类型
+typedef struct Snode{
+    TElemType data;//树中结点的数据类型
+    int parent;//结点的父结点在数组中的位置下标
+}PTNode;
+typedef struct {
+    PTNode tnode[MAX_SIZE];//存放树中所有结点
+    int n;//根的位置下标和结点数
+}PTree;
+```
+
+**因此，存储图 1 中普通树的 C 语言实现代码为：**
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 20
+typedef char ElemType;//宏定义树结构中数据类型
+typedef struct Snode  //结点结构
+{
+    ElemType data;
+    int parent;
+}PNode;
+typedef struct  //树结构
+{
+    PNode tnode[MAX_SIZE];
+    int n;                 //结点个数
+}PTree;
+PTree InitPNode(PTree tree)
+{
+    int i,j;
+    char ch;
+    printf("请输出节点个数:\n");
+    scanf("%d",&(tree.n));
+    printf("请输入结点的值其双亲位于数组中的位置下标:\n");
+    for(i=0; i<tree.n; i++)
+    {
+        fflush(stdin);
+        scanf("%c %d",&ch,&j);
+        tree.tnode[i].data = ch;
+        tree.tnode[i].parent = j;
+    }
+    return tree;
+}
+void FindParent(PTree tree)
+{
+    char a;
+    int isfind = 0;
+    printf("请输入要查询的结点值:\n");
+    fflush(stdin);
+    scanf("%c",&a);
+    for(int i =0;i<tree.n;i++){
+        if(tree.tnode[i].data == a){
+            isfind=1;
+            int ad=tree.tnode[i].parent;
+            printf("%c的父节点为 %c,存储位置下标为 %d",a,tree.tnode[ad].data,ad);
+            break;
+        }
+    }
+    if(isfind == 0){
+        printf("树中无此节点");
+    }
+}
+int main()
+{
+    PTree tree;
+    tree = InitPNode(tree);
+    FindParent(tree);
+    return 0;
+}
+```
+
+
+
+   
+1. 孩子表示法
+
+1. 孩子兄弟表示法
+
 
 
 
