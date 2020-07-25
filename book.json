@@ -13,14 +13,17 @@
             "weibo": null
         }
     },
+    "plugins": [
+        "popup"
+    ],
     "pdf": {
         "fontSize": 12,
         "footerTemplate": null,
         "headerTemplate": null,
         "margin": {
             "bottom": 36,
-            "left": 62,
-            "right": 62,
+            "left": 40,
+            "right": 40,
             "top": 36
         },
         "pageNumbers": false,
