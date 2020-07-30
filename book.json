@@ -14,7 +14,8 @@
         }
     },
     "plugins": [
-        "popup"
+        "popup",
+        "katex"
     ],
     "pdf": {
         "fontSize": 12,
