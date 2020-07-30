@@ -30,18 +30,20 @@
 $$
 ltag =
 \begin{cases}
-1   lchild 域指示结点的左孩子 \\
-0   lchild 域指示结点的直接前驱
+1   lchild  is the domain indicates the left child of a node \\
+0   lchild is the domain indicates a direct precursor to a node
 \end{cases}
+
+
+
+
+$$
 
 rtag =
 \begin{cases}
 1   rchild 域指示结点的右孩子 \\
 0   rchild 域指示结点的直接后继
 \end{cases}
-
-
-$$
 
 结点结构代码实现：
 
