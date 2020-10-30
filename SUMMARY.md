@@ -138,6 +138,7 @@
         * [4.3.18 循环神经网络与LSTM](chapter3/algorithms/algorithms-recurrent-neural-network-VS-LSTM.md)
         * [4.3.19 Caffe&TensorFlow&MxNet框架](chapter3/algorithms/algorithms-Caffe-VS-TensorFlow-MxNet-DP.md)
         * [4.3.20 贝叶斯网络和HMM](chapter3/algorithms/algorithms-Bayes-VS-HMM-DP.md)
+            * [4.3.20.2 隐马尔科夫模型HMM](chapter3/algorithms/algorithms-Hidden-Markov-Model-DP.md)
         * [4.3.21 词嵌入word embedding](chapter3/algorithms/algorithms-word-embedding-DP.md)
 * [5 机器学习深度学习](chapter4/README.md)
     * [5.1 深度学习基础](chapter4/base/deeped-learning-basic.md)
