@@ -1,0 +1,3370 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>4.1.4.10 二叉排序树 · 机器学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="ljee <ljee8290@gmail.com>">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="algorithms-linke-recursion-dstack.html" />
+    
+    
+    <link rel="prev" href="algorithms-semantic-analysis-tree.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../install/">
+            
+                <a href="../../install/">
+            
+                    
+                    1 安装手册
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../install/introduction.html">
+            
+                <a href="../../install/introduction.html">
+            
+                    
+                    1.1 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../install/install.html">
+            
+                <a href="../../install/install.html">
+            
+                    
+                    1.2 安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../install/basic-usage.html">
+            
+                <a href="../../install/basic-usage.html">
+            
+                    
+                    1.3 使用说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../install/basic-program.html">
+            
+                <a href="../../install/basic-program.html">
+            
+                    
+                    1.4 编程基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../chapter1/">
+            
+                <a href="../../chapter1/">
+            
+                    
+                    2 基础必备
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../advanced/program/program-basic.html">
+            
+                <a href="../../advanced/program/program-basic.html">
+            
+                    
+                    python基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../advanced/program/program-kernel.html">
+            
+                <a href="../../advanced/program/program-kernel.html">
+            
+                    
+                    python核心编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../advanced/program/program-data-struct.html">
+            
+                <a href="../../advanced/program/program-data-struct.html">
+            
+                    
+                    数据结构和算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../../advanced/program/program-database.html">
+            
+                <a href="../../advanced/program/program-database.html">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../../advanced/program/program-front.html">
+            
+                <a href="../../advanced/program/program-front.html">
+            
+                    
+                    前端部分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.5" data-path="../../advanced/program/program-django.html">
+            
+                <a href="../../advanced/program/program-django.html">
+            
+                    
+                    django框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../../advanced/program/program-spider.html">
+            
+                <a href="../../advanced/program/program-spider.html">
+            
+                    
+                    爬虫框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../../advanced/program/program-tornado.html">
+            
+                <a href="../../advanced/program/program-tornado.html">
+            
+                    
+                    Tornado框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.8" data-path="../../advanced/program/program-linux-autodeployed.html">
+            
+                <a href="../../advanced/program/program-linux-autodeployed.html">
+            
+                    
+                    Linux和自动化运维
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../chapter2/">
+            
+                <a href="../../chapter2/">
+            
+                    
+                    3 高等数学
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../chapter2/machlearning-model.html">
+            
+                <a href="../../chapter2/machlearning-model.html">
+            
+                    
+                    3.1 数学、算法、微积分、概率论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../chapter2/machlearning-probability-theory.html">
+            
+                <a href="../../chapter2/machlearning-probability-theory.html">
+            
+                    
+                    3.2 统计机器学习概率与算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../chapter2/probability-theory-alth/probability-basic.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-basic.html">
+            
+                    
+                    3.2.1 概率基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../chapter2/probability-theory-alth/probability-random-variable-basic.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-random-variable-basic.html">
+            
+                    
+                    3.2.2 随机变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../chapter2/probability-theory-alth/probability-gaussian-distribution-basic.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-gaussian-distribution-basic.html">
+            
+                    
+                    3.2.3 高斯分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../../chapter2/probability-theory-alth/probability-continuous-probability-distribution-basic.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-continuous-probability-distribution-basic.html">
+            
+                    
+                    3.2.4 连续分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../../chapter2/probability-theory-alth/probability-jeffrey-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-jeffrey-prior.html">
+            
+                    
+                    3.2.5 jeffrey prior
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="../../chapter2/probability-theory-alth/probability-scale-mixture-pisribarin.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-scale-mixture-pisribarin.html">
+            
+                    
+                    3.2.6 scale mixture pisribarin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.7" data-path="../../chapter2/probability-theory-alth/probability-statistic-interence.html">
+            
+                <a href="../../chapter2/probability-theory-alth/probability-statistic-interence.html">
+            
+                    
+                    3.2.7 statistic-interence
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.8" data-path="../../chapter2/probability-theory-alth/laplace-transform.html">
+            
+                <a href="../../chapter2/probability-theory-alth/laplace-transform.html">
+            
+                    
+                    3.2.8 拉普拉斯变换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.9" data-path="../../chapter2/probability-theory-alth/multi-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/multi-prior.html">
+            
+                    
+                    3.2.9 多元分布定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.10" data-path="../../chapter2/probability-theory-alth/Jocobian.html">
+            
+                <a href="../../chapter2/probability-theory-alth/Jocobian.html">
+            
+                    
+                    3.2.10 Jocobian
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.11" data-path="../../chapter2/probability-theory-alth/Wedge-production.html">
+            
+                <a href="../../chapter2/probability-theory-alth/Wedge-production.html">
+            
+                    
+                    3.2.11 Wedge production
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.12" data-path="../../chapter2/probability-theory-alth/wishart.html">
+            
+                <a href="../../chapter2/probability-theory-alth/wishart.html">
+            
+                    
+                    3.2.12 wishart分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.13" data-path="../../chapter2/probability-theory-alth/wishart.html">
+            
+                <a href="../../chapter2/probability-theory-alth/wishart.html">
+            
+                    
+                    3.2.13 多元正态分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.14" data-path="../../chapter2/probability-theory-alth/wishart.html">
+            
+                <a href="../../chapter2/probability-theory-alth/wishart.html">
+            
+                    
+                    3.2.14 统计量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.15" data-path="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                    
+                    3.2.15 矩阵元Beta分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.16" data-path="../../chapter2/probability-theory-alth/matrix-Raiffa-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/matrix-Raiffa-prior.html">
+            
+                    
+                    3.2.16 共轭先验性质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.17" data-path="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                    
+                    3.2.17 统计量充分统计量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.18" data-path="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                    
+                    3.2.18 指数型分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.19" data-path="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                <a href="../../chapter2/probability-theory-alth/matrix-meta-prior.html">
+            
+                    
+                    3.2.19 Entropy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../chapter2/machlearning-model.html">
+            
+                <a href="../../chapter2/machlearning-model.html">
+            
+                    
+                    3.3 深度学习模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../chapter2/machlearning-model-math-basic.html">
+            
+                <a href="../../chapter2/machlearning-model-math-basic.html">
+            
+                    
+                    3.3.1 机器学习数学基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../chapter2/machlearning-model-high-perfermance-computing.html">
+            
+                <a href="../../chapter2/machlearning-model-high-perfermance-computing.html">
+            
+                    
+                    3.3.2 高效计算基础与图像线性分类器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../chapter2/machlearning-model-gradient-descent.html">
+            
+                <a href="../../chapter2/machlearning-model-gradient-descent.html">
+            
+                    
+                    3.3.3 梯度下降法与反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../../chapter2/machlearning-model-cnn-genral-framework-theory-1.html">
+            
+                <a href="../../chapter2/machlearning-model-cnn-genral-framework-theory-1.html">
+            
+                    
+                    3.3.4 CNN与常用框架-理论篇上
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.5" data-path="../../chapter2/machlearning-model-cnn-genral-framework-theory-2.html">
+            
+                <a href="../../chapter2/machlearning-model-cnn-genral-framework-theory-2.html">
+            
+                    
+                    3.3.5 CNN训练注意事项-理论篇下
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.6" data-path="../../chapter2/machlearning-model-cnn-genral-framework-apply.html">
+            
+                <a href="../../chapter2/machlearning-model-cnn-genral-framework-apply.html">
+            
+                    
+                    3.3.6 CNN推案案例-应用篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.7" data-path="../../chapter2/machlearning-model-rnn-genral-framework-theory.html">
+            
+                <a href="../../chapter2/machlearning-model-rnn-genral-framework-theory.html">
+            
+                    
+                    3.3.7 RNN-理论篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.8" data-path="../../chapter2/machlearning-model-rnn-genral-framework-apply.html">
+            
+                <a href="../../chapter2/machlearning-model-rnn-genral-framework-apply.html">
+            
+                    
+                    3.3.8 RNN推案案例-应用篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.9" data-path="../../chapter2/machlearning-model-other-net-genral-framework-theory.html">
+            
+                <a href="../../chapter2/machlearning-model-other-net-genral-framework-theory.html">
+            
+                    
+                    3.3.9 非常用网络模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    4 算法基础提高
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="algorithms-basic.html">
+            
+                <a href="algorithms-basic.html">
+            
+                    
+                    4.1 机器学习算法基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="algorithms-kernel.html">
+            
+                <a href="algorithms-kernel.html">
+            
+                    
+                    4.1.1 管窥算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="algorithms-string.html">
+            
+                <a href="algorithms-string.html">
+            
+                    
+                    4.1.2 字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="algorithms-array.html">
+            
+                <a href="algorithms-array.html">
+            
+                    
+                    4.1.3 数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="algorithms-tree.html">
+            
+                <a href="algorithms-tree.html">
+            
+                    
+                    4.1.4 树
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.4.1" data-path="algorithms-tree-binary-tree.html">
+            
+                <a href="algorithms-tree-binary-tree.html">
+            
+                    
+                    4.1.4.1 二叉树之一
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.2" data-path="algorithms-tree-binary-tree-2.html">
+            
+                <a href="algorithms-tree-binary-tree-2.html">
+            
+                    
+                    4.1.4.2 二叉树之遍历算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.3" data-path="algorithms-Threaded-binary-tree.html">
+            
+                <a href="algorithms-Threaded-binary-tree.html">
+            
+                    
+                    4.1.4.3 线索二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.4" data-path="algorithms-two-way-threaded-binary-tree.html">
+            
+                <a href="algorithms-two-way-threaded-binary-tree.html">
+            
+                    
+                    4.1.4.4 双向线索二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.5" data-path="algorithms-BST-tree.html">
+            
+                <a href="algorithms-BST-tree.html">
+            
+                    
+                    4.1.4.4 BST二叉查找树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.6" data-path="algorithms-AVL-tree.html">
+            
+                <a href="algorithms-AVL-tree.html">
+            
+                    
+                    4.1.4.5 AVL树及变型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.7" data-path="algorithms-red-black-AVL-tree.html">
+            
+                <a href="algorithms-red-black-AVL-tree.html">
+            
+                    
+                    4.1.4.5 红黑树算法和应用(更高级的二叉查找树)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.8" data-path="algorithms-tree-2-3-4-tree.html">
+            
+                <a href="algorithms-tree-2-3-4-tree.html">
+            
+                    
+                    4.1.4.6 B树&B树变种
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.9" data-path="algorithms-key-tree-finder-tree.html">
+            
+                <a href="algorithms-key-tree-finder-tree.html">
+            
+                    
+                    4.1.4.6 键树查找法（双链树和字典树）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.10" data-path="algorithms-hash-key-tree-finder-tree.html">
+            
+                <a href="algorithms-hash-key-tree-finder-tree.html">
+            
+                    
+                    4.1.4.7 哈希查找算法及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.11" data-path="algorithms-tree-LSM-tree.html">
+            
+                <a href="algorithms-tree-LSM-tree.html">
+            
+                    
+                    4.1.4.7 LSM树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.12" data-path="algorithms-tree-AST-tree.html">
+            
+                <a href="algorithms-tree-AST-tree.html">
+            
+                    
+                    4.1.4.8 AST语法树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4.13" data-path="algorithms-semantic-analysis-tree.html">
+            
+                <a href="algorithms-semantic-analysis-tree.html">
+            
+                    
+                    4.1.4.9 语义分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.1.4.14" data-path="algorithms-tree-binary-sorts-tree.html">
+            
+                <a href="algorithms-tree-binary-sorts-tree.html">
+            
+                    
+                    4.1.4.10 二叉排序树
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.5" data-path="algorithms-linke-recursion-dstack.html">
+            
+                <a href="algorithms-linke-recursion-dstack.html">
+            
+                    
+                    4.1.5 链表递归栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6" data-path="algorithms-find-sorts.html">
+            
+                <a href="algorithms-find-sorts.html">
+            
+                    
+                    4.1.6 查找排序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.6.1" data-path="algorithms-finds.html">
+            
+                <a href="algorithms-finds.html">
+            
+                    
+                    4.1.6.1 查找
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.6.1.1" data-path="../finds/algorithms-hash-lookup-algorithm.html">
+            
+                <a href="../finds/algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.1 什么是查找表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.2" data-path="../finds/algorithms-hash-lookup-algorithm.html">
+            
+                <a href="../finds/algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.2 顺序查找算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.3" data-path="algorithms-hash-lookup-algorithm.html">
+            
+                <a href="algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.3 折半查找(二分查找)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.4" data-path="algorithms-hash-lookup-algorithm.html">
+            
+                <a href="algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.4 分块查找算法(索引顺序查找)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.5" data-path="algorithms-hash-lookup-algorithm.html">
+            
+                <a href="algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.5 静态树表查找算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.1.6.1.6" data-path="algorithms-tree-binary-sorts-tree.html">
+            
+                <a href="algorithms-tree-binary-sorts-tree.html">
+            
+                    
+                    4.1.6.1.6 二叉排序树（BST二叉查找树）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.7" data-path="algorithms-AVL-tree.html">
+            
+                <a href="algorithms-AVL-tree.html">
+            
+                    
+                    4.1.6.1.7 平衡二叉树（AVL树及变型）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.8" data-path="algorithms-red-black-AVL-tree.html">
+            
+                <a href="algorithms-red-black-AVL-tree.html">
+            
+                    
+                    4.1.6.1.8 红黑树算法(更高级的二叉查找树)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.9" data-path="algorithms-tree-B-plus-tree.html">
+            
+                <a href="algorithms-tree-B-plus-tree.html">
+            
+                    
+                    4.1.6.1.9 B+树及其基本操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.10" data-path="algorithms-tree-B-plus-add-insert-tree.html">
+            
+                <a href="algorithms-tree-B-plus-add-insert-tree.html">
+            
+                    
+                    4.1.6.1.10 B+树及插入和删除操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.11" data-path="algorithms-key-tree-finder-tree.html">
+            
+                <a href="algorithms-key-tree-finder-tree.html">
+            
+                    
+                    4.1.6.1.11 键树查找法（双链树和字典树）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.12" data-path="algorithms-hash-table-struct-algorithm.html">
+            
+                <a href="algorithms-hash-table-struct-algorithm.html">
+            
+                    
+                    4.1.6.1.12 什么是哈希表（散列表）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.1.13" data-path="../hash/algorithms-hash-lookup-algorithm.html">
+            
+                <a href="../hash/algorithms-hash-lookup-algorithm.html">
+            
+                    
+                    4.1.6.1.13 哈希查找算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2" data-path="algorithms-sorts.html">
+            
+                <a href="algorithms-sorts.html">
+            
+                    
+                    4.1.6.2 排序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.6.2.1" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.1 插入排序算法及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.2" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.2 折半插入排序算法（折半排序算法）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.3" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.3 2-路插入排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.4" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.4 表插入排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.5" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.5 希尔排序算法（缩小增量排序）及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.6" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.6 冒泡排序算法（起泡排序）及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.7" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.7 快速排序算法（QSort，快排）及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.8" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.8 选择排序算法及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.9" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.9 归并排序算法及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.10" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.10 基数排序及实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.2.11" data-path="algorithms-insert-table-sorts.html">
+            
+                <a href="algorithms-insert-table-sorts.html">
+            
+                    
+                    4.1.6.2.11 内部排序算法的优势分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.3" data-path="algorithms-foreign-sorts.html">
+            
+                <a href="algorithms-foreign-sorts.html">
+            
+                    
+                    4.1.6.3 外部排序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.6.3.1" data-path="algorithms-out-sorts.html">
+            
+                <a href="algorithms-out-sorts.html">
+            
+                    
+                    4.1.6.3.1 什么是外部排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.3.2" data-path="algorithms-out-sorts.html">
+            
+                <a href="algorithms-out-sorts.html">
+            
+                    
+                    4.1.6.3.2 多路平衡归并排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.3.3" data-path="algorithms-out-sorts.html">
+            
+                <a href="algorithms-out-sorts.html">
+            
+                    
+                    4.1.6.3.3 置换选择排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6.3.4" data-path="algorithms-out-sorts.html">
+            
+                <a href="algorithms-out-sorts.html">
+            
+                    
+                    4.1.6.3.4 最佳归并树
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.7" data-path="algorithms-map-1.html">
+            
+                <a href="algorithms-map-1.html">
+            
+                    
+                    4.1.7 图论上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.8" data-path="algorithms-map-2.html">
+            
+                <a href="algorithms-map-2.html">
+            
+                    
+                    4.1.8 图论下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.9" data-path="algorithms-greedy-DP.html">
+            
+                <a href="algorithms-greedy-DP.html">
+            
+                    
+                    4.1.9 贪心算法和动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.10" data-path="algorithms-Prob-and-Math-statistics.html">
+            
+                <a href="algorithms-Prob-and-Math-statistics.html">
+            
+                    
+                    4.1.10 概率分治和机器学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../algorithms-advance/algorithms-basic-advanced.html">
+            
+                <a href="../algorithms-advance/algorithms-basic-advanced.html">
+            
+                    
+                    4.2 机器学习算法基础进阶
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../algorithms-advance/algorithms-kernel.html">
+            
+                <a href="../algorithms-advance/algorithms-kernel.html">
+            
+                    
+                    4.2.1 链表栈队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../algorithms-advance/algorithms-string.html">
+            
+                <a href="../algorithms-advance/algorithms-string.html">
+            
+                    
+                    4.2.2 字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../algorithms-advance/algorithms-array.html">
+            
+                <a href="../algorithms-advance/algorithms-array.html">
+            
+                    
+                    4.2.3 数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../algorithms-advance/algorithms-tree.html">
+            
+                <a href="../algorithms-advance/algorithms-tree.html">
+            
+                    
+                    4.2.4 数组树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../algorithms-advance/datastruct-tree-vs-maps.html">
+            
+                <a href="../algorithms-advance/datastruct-tree-vs-maps.html">
+            
+                    
+                    4.2.5 树和图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../algorithms-advance/algorithms-find-sorts.html">
+            
+                <a href="../algorithms-advance/algorithms-find-sorts.html">
+            
+                    
+                    4.2.6 搜索排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../algorithms-advance/algorithms-map-1.html">
+            
+                <a href="../algorithms-advance/algorithms-map-1.html">
+            
+                    
+                    4.2.7 贪心动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.8" data-path="../algorithms-advance/algorithms-map-2.html">
+            
+                <a href="../algorithms-advance/algorithms-map-2.html">
+            
+                    
+                    4.2.8 概率组合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.9" data-path="algorithms-greedy-DP.html">
+            
+                <a href="algorithms-greedy-DP.html">
+            
+                    
+                    4.2.9 海量数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.10" data-path="../memory/algorithms-dynamic-memory-management.html">
+            
+                <a href="../memory/algorithms-dynamic-memory-management.html">
+            
+                    
+                    4.2.10 动态内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.11" data-path="../video/algorithms-advance-datum-management.html">
+            
+                <a href="../video/algorithms-advance-datum-management.html">
+            
+                    
+                    4.2.11 精进篇-路漫漫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../algorithms-advance/algorithms-basic.html">
+            
+                <a href="../algorithms-advance/algorithms-basic.html">
+            
+                    
+                    4.3 回归神经网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../algorithms-advance/algorithms-Machine-learning-and-calculus-probability-theory.html">
+            
+                <a href="../algorithms-advance/algorithms-Machine-learning-and-calculus-probability-theory.html">
+            
+                    
+                    4.3.1 机器学习初步与微积分概率论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../algorithms-advance/algorithms-Mathematical-statistics-and-parameter-estimation.html">
+            
+                <a href="../algorithms-advance/algorithms-Mathematical-statistics-and-parameter-estimation.html">
+            
+                    
+                    4.3.2 数理统计与参数估计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../algorithms-advance/algorithms-Matrix-analysis-and-application.html">
+            
+                <a href="../algorithms-advance/algorithms-Matrix-analysis-and-application.html">
+            
+                    
+                    4.3.3 矩阵分析及应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../algorithms-advance/algorithms-Convex-optimization-preliminary.html">
+            
+                <a href="../algorithms-advance/algorithms-Convex-optimization-preliminary.html">
+            
+                    
+                    4.3.4 凸优化初步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../algorithms-advance/algorithms-Regression-analysis-and-engineering-applications.html">
+            
+                <a href="../algorithms-advance/algorithms-Regression-analysis-and-engineering-applications.html">
+            
+                    
+                    4.3.5 回归分析与工程应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.6" data-path="../algorithms-advance/algorithms-Feature-engineering.html">
+            
+                <a href="../algorithms-advance/algorithms-Feature-engineering.html">
+            
+                    
+                    4.3.6 特征工程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.7" data-path="../algorithms-advance/algorithms-Workflow-and-model-tuning.html">
+            
+                <a href="../algorithms-advance/algorithms-Workflow-and-model-tuning.html">
+            
+                    
+                    4.3.7 工作流程与模型调优
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.8" data-path="../algorithms-advance/algorithms-Maximum-entropy-model-and-EM-algorithm.html">
+            
+                <a href="../algorithms-advance/algorithms-Maximum-entropy-model-and-EM-algorithm.html">
+            
+                    
+                    4.3.8 最大熵模型与EM算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.9" data-path="algorithms-Recommended-systems-and-applications-DP.html">
+            
+                <a href="algorithms-Recommended-systems-and-applications-DP.html">
+            
+                    
+                    4.3.9 推荐系统与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.10" data-path="../algorithms-advance/algorithms-Clustering-algorithms-and-applications.html">
+            
+                <a href="../algorithms-advance/algorithms-Clustering-algorithms-and-applications.html">
+            
+                    
+                    4.3.10 聚类算法与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.11" data-path="../algorithms-advance/algorithms-Decision-tree-random-forest-with-adaboost.html">
+            
+                <a href="../algorithms-advance/algorithms-Decision-tree-random-forest-with-adaboost.html">
+            
+                    
+                    4.3.11 决策树随机森林与adaboost
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.12" data-path="algorithms-SVM-vector-machine-DP.html">
+            
+                <a href="algorithms-SVM-vector-machine-DP.html">
+            
+                    
+                    4.3.12 SVM向量机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.13" data-path="../algorithms-advance/algorithms-Bayesian-method-1.html">
+            
+                <a href="../algorithms-advance/algorithms-Bayesian-method-1.html">
+            
+                    
+                    4.3.13 贝叶斯方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.14" data-path="../algorithms-advance/algorithms-Topic-model-2.html">
+            
+                <a href="../algorithms-advance/algorithms-Topic-model-2.html">
+            
+                    
+                    4.3.14 主题模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.15" data-path="algorithms-Bayes-inference-sampling-and-variables-DP.html">
+            
+                <a href="algorithms-Bayes-inference-sampling-and-variables-DP.html">
+            
+                    
+                    4.3.15 贝叶斯推理采样与变分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.16" data-path="algorithms-Artificial-neural-network-DP.html">
+            
+                <a href="algorithms-Artificial-neural-network-DP.html">
+            
+                    
+                    4.3.16 人工神经网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.17" data-path="algorithms-Convolutional-neural-network-DP.html">
+            
+                <a href="algorithms-Convolutional-neural-network-DP.html">
+            
+                    
+                    4.3.17 卷积神经网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.18" data-path="algorithms-recurrent-neural-network-VS-LSTM.html">
+            
+                <a href="algorithms-recurrent-neural-network-VS-LSTM.html">
+            
+                    
+                    4.3.18 循环神经网络与LSTM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.19" data-path="algorithms-Caffe-VS-TensorFlow-MxNet-DP.html">
+            
+                <a href="algorithms-Caffe-VS-TensorFlow-MxNet-DP.html">
+            
+                    
+                    4.3.19 Caffe&TensorFlow&MxNet框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.20" data-path="algorithms-Bayes-VS-HMM-DP.html">
+            
+                <a href="algorithms-Bayes-VS-HMM-DP.html">
+            
+                    
+                    4.3.20 贝叶斯网络和HMM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.20.1" data-path="algorithms-Hidden-Markov-Model-DP.html">
+            
+                <a href="algorithms-Hidden-Markov-Model-DP.html">
+            
+                    
+                    4.3.20.2 隐马尔科夫模型HMM
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.21" data-path="algorithms-word-embedding-DP.html">
+            
+                <a href="algorithms-word-embedding-DP.html">
+            
+                    
+                    4.3.21 词嵌入word embedding
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../chapter4/">
+            
+                <a href="../../chapter4/">
+            
+                    
+                    5 机器学习深度学习
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../chapter4/base/deeped-learning-basic.html">
+            
+                <a href="../../chapter4/base/deeped-learning-basic.html">
+            
+                    
+                    5.1 深度学习基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../../chapter4/base/deeped-learning-basic-overviews.html">
+            
+                <a href="../../chapter4/base/deeped-learning-basic-overviews.html">
+            
+                    
+                    5.1.1 概论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../../chapter4/base/deeped-learning-basic-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-basic-theory.html">
+            
+                    
+                    5.1.2 基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="../../chapter4/base/deeped-learning-basic-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-basic-theory.html">
+            
+                    
+                    5.1.3 决策树算法&应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="../../chapter4/base/deeped-learning-KNN-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-KNN-theory.html">
+            
+                    
+                    5.1.4 最邻近规则分类KNN&应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.5" data-path="../../chapter4/base/deeped-learning-SVM-theory-1.html">
+            
+                <a href="../../chapter4/base/deeped-learning-SVM-theory-1.html">
+            
+                    
+                    5.1.5 支持向量机SVM算法-上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.6" data-path="../../chapter4/base/deeped-learning-SVM-theory-2.html">
+            
+                <a href="../../chapter4/base/deeped-learning-SVM-theory-2.html">
+            
+                    
+                    5.1.6 支持向量机SVM算法-中篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.7" data-path="../../chapter4/base/deeped-learning-SVM-apply-1.html">
+            
+                <a href="../../chapter4/base/deeped-learning-SVM-apply-1.html">
+            
+                    
+                    5.1.7 支持向量机SVM算法-应用上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.8" data-path="../../chapter4/base/deeped-learning-SVM-apply-2.html">
+            
+                <a href="../../chapter4/base/deeped-learning-SVM-apply-2.html">
+            
+                    
+                    5.1.8 支持向量机SVM算法-应用下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.9" data-path="../../chapter4/base/deeped-learning-NN-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-NN-theory.html">
+            
+                    
+                    5.1.9 神经网络NN算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.10" data-path="../../chapter4/base/deeped-learning-NN-apply-1.html">
+            
+                <a href="../../chapter4/base/deeped-learning-NN-apply-1.html">
+            
+                    
+                    5.1.10 神经网络NN算法-应用上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.11" data-path="../../chapter4/base/deeped-learning-NN-apply-2.html">
+            
+                <a href="../../chapter4/base/deeped-learning-NN-apply-2.html">
+            
+                    
+                    5.1.11 神经网络NN算法-应用下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.12" data-path="../../chapter4/base/deeped-learning-linear-regression-theory-1.html">
+            
+                <a href="../../chapter4/base/deeped-learning-linear-regression-theory-1.html">
+            
+                    
+                    5.1.12 简单线性回归算法-上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.13" data-path="../../chapter4/base/deeped-learning-linear-regression-theory-2.html">
+            
+                <a href="../../chapter4/base/deeped-learning-linear-regression-theory-2.html">
+            
+                    
+                    5.1.13 简单线性回归算法-下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.14" data-path="../../chapter4/base/deeped-learning-MLR-theory-1.html">
+            
+                <a href="../../chapter4/base/deeped-learning-MLR-theory-1.html">
+            
+                    
+                    5.1.14 多元线性回归算法-上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.15" data-path="../../chapter4/base/deeped-learning-MLR-theory-2.html">
+            
+                <a href="../../chapter4/base/deeped-learning-MLR-theory-2.html">
+            
+                    
+                    5.1.15 多元线性回归算法-下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.16" data-path="../../chapter4/base/deeped-learning-logistic-regression-overviews.html">
+            
+                <a href="../../chapter4/base/deeped-learning-logistic-regression-overviews.html">
+            
+                    
+                    5.1.16 非线性回归/逻辑回归
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.17" data-path="../../chapter4/base/Correlation-and-coefficient-of-determination-in-regression.html">
+            
+                <a href="../../chapter4/base/Correlation-and-coefficient-of-determination-in-regression.html">
+            
+                    
+                    5.1.17 回归中的相关度和决定系数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.18" data-path="../../chapter4/base/deeped-learning-coefficient-of-determination.html">
+            
+                <a href="../../chapter4/base/deeped-learning-coefficient-of-determination.html">
+            
+                    
+                    5.1.18 回归中的相关性和R平方值应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.19" data-path="../../chapter4/base/deeped-learning-k-means-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-k-means-theory.html">
+            
+                    
+                    5.1.19 Kmeans算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.20" data-path="../../chapter4/base/deeped-learning-k-means-apply.html">
+            
+                <a href="../../chapter4/base/deeped-learning-k-means-apply.html">
+            
+                    
+                    5.1.20 Kmeans算法-应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.21" data-path="../../chapter4/base/deeped-learning-hierarchical-cluster-theory.html">
+            
+                <a href="../../chapter4/base/deeped-learning-hierarchical-cluster-theory.html">
+            
+                    
+                    5.1.21 Hierarchical cluster层次聚类算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.22" data-path="../../chapter4/base/deeped-learning-hierarchical-cluster-apply.html">
+            
+                <a href="../../chapter4/base/deeped-learning-hierarchical-cluster-apply.html">
+            
+                    
+                    5.1.22 Hierarchical cluster层次聚类算法-应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../chapter4/advanced/deeped-learning-basic-advanced.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced.html">
+            
+                    
+                    5.2 深度学习基础进阶
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-overviews.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-overviews.html">
+            
+                    
+                    5.2.1 进阶概论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-write-digit.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-write-digit.html">
+            
+                    
+                    5.2.2 手写数字识别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-ANN.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-ANN.html">
+            
+                    
+                    5.2.3 神经网络基本结构及梯度下降算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-theory.html">
+            
+                    
+                    5.2.4 随机梯度下降算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.5" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-apply-1.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-apply-1.html">
+            
+                    
+                    5.2.5 随机梯度下降算法-实现篇上
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.6" data-path="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-apply-2.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-basic-advanced-stochastic-gradient-descent-apply-2.html">
+            
+                    
+                    5.2.6 随机梯度下降算法-实现篇下
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.7" data-path="../../chapter4/advanced/deeped-learning-advanced-write-digit-Recognition-advanced-overviews.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-advanced-write-digit-Recognition-advanced-overviews.html">
+            
+                    
+                    5.2.7 神经网络手写数字算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.8" data-path="../../chapter4/advanced/deeped-learning-backpropagation-theory-1.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-backpropagation-theory-1.html">
+            
+                    
+                    5.2.8 Backpropagation算法-上篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.9" data-path="../../chapter4/advanced/deeped-learning-backpropagation-theory-2.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-backpropagation-theory-2.html">
+            
+                    
+                    5.2.9 Backpropagation算法-下篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.10" data-path="../../chapter4/advanced/deeped-learning-backpropagation-apply-1.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-backpropagation-apply-1.html">
+            
+                    
+                    5.2.10 Backpropagation算法-应用篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.11" data-path="../../chapter4/advanced/deeped-learning-cross-entropy-theory-1.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-cross-entropy-theory-1.html">
+            
+                    
+                    5.2.11 cross-entropy函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.12" data-path="../../chapter4/advanced/deeped-learning-softmax-overfitting-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-softmax-overfitting-theory.html">
+            
+                    
+                    5.2.12 Softmax和Overfitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.13" data-path="../../chapter4/advanced/deeped-learning-Regulization-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-Regulization-theory.html">
+            
+                    
+                    5.2.13 Regulization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.14" data-path="../../chapter4/advanced/deeped-learning-Regulization-VS-Dropout-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-Regulization-VS-Dropout-theory.html">
+            
+                    
+                    5.2.14 Regulization和Dropout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.15" data-path="../../chapter4/advanced/deeped-learning-normal-distribution-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-normal-distribution-theory.html">
+            
+                    
+                    5.2.15 正态分布和初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.16" data-path="../../chapter4/advanced/deeped-learning-advanced-write-digit-Recognition-theory.html">
+            
+                <a href="../../chapter4/advanced/deeped-learning-advanced-write-digit-Recognition-theory.html">
+            
+                    
+                    5.2.16 提高手写数字识别率
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../chapter4/base/deeped-learning-framework-advanced.html">
+            
+                <a href="../../chapter4/base/deeped-learning-framework-advanced.html">
+            
+                    
+                    5.2 深度学习框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../chapter5/">
+            
+                <a href="../../chapter5/">
+            
+                    
+                    6 数据分析与挖掘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../chapter6/">
+            
+                <a href="../../chapter6/">
+            
+                    
+                    7 自然语言处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../chapter6/nlp/nlp-word2vec-overviews.html">
+            
+                <a href="../../chapter6/nlp/nlp-word2vec-overviews.html">
+            
+                    
+                    7.1 自然语言处理与文本挖掘概述
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../../chapter6/nlp/introduction.html">
+            
+                <a href="../../chapter6/nlp/introduction.html">
+            
+                    
+                    7.1.1 NLP理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.2" data-path="../../chapter6/nlp/word2Vec-theory.html">
+            
+                <a href="../../chapter6/nlp/word2Vec-theory.html">
+            
+                    
+                    7.1.2 Word2Vec理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.3" data-path="../../chapter6/nlp/word2Vec-practice.html">
+            
+                <a href="../../chapter6/nlp/word2Vec-practice.html">
+            
+                    
+                    7.1.3 Word2Vec实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.4" data-path="../../chapter6/nlp/word2Vec-fastText-advance.html">
+            
+                <a href="../../chapter6/nlp/word2Vec-fastText-advance.html">
+            
+                    
+                    7.1.4 从Word2Vec到FastText的发展趋势
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../chapter6/nlp2/nlp-word2vec-apply.html">
+            
+                <a href="../../chapter6/nlp2/nlp-word2vec-apply.html">
+            
+                    
+                    7.2 自动机及其应用/文本自动矫正/歧义消除
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../chapter6/nlp3/language-model-vs-smoothing-method.html">
+            
+                <a href="../../chapter6/nlp3/language-model-vs-smoothing-method.html">
+            
+                    
+                    7.3 语言模型/平滑方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../../chapter6/nlp4/language-model-vs-smoothing-method.html">
+            
+                <a href="../../chapter6/nlp4/language-model-vs-smoothing-method.html">
+            
+                    
+                    7.4 概率图模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../../chapter6/nlp6/segementation-words.html">
+            
+                <a href="../../chapter6/nlp6/segementation-words.html">
+            
+                    
+                    7.6 分词专题
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.5.1" data-path="../../chapter6/nlp6/chinese-segementation-words.html">
+            
+                <a href="../../chapter6/nlp6/chinese-segementation-words.html">
+            
+                    
+                    7.6.1 中文分词专题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.2" data-path="../../chapter6/nlp6/english-segementation-words.html">
+            
+                <a href="../../chapter6/nlp6/english-segementation-words.html">
+            
+                    
+                    7.6.2 英文分词专题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.3" data-path="../../chapter6/nlp6/thailand-segementation-words.html">
+            
+                <a href="../../chapter6/nlp6/thailand-segementation-words.html">
+            
+                    
+                    7.6.3 泰文分词专题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../../chapter6/nlp6/chinese-speech-words.html">
+            
+                <a href="../../chapter6/nlp6/chinese-speech-words.html">
+            
+                    
+                    7.7 语音合成专题
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.6.1" data-path="../../chapter6/nlp6/voice-introduction.html">
+            
+                <a href="../../chapter6/nlp6/voice-introduction.html">
+            
+                    
+                    7.7.1 Voice基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../chapter7/">
+            
+                <a href="../../chapter7/">
+            
+                    
+                    8 面试相关
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../chapter7/interview-flags.html">
+            
+                <a href="../../chapter7/interview-flags.html">
+            
+                    
+                    8.1 FLAG高频
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../chapter7/interview-batj.html">
+            
+                <a href="../../chapter7/interview-batj.html">
+            
+                    
+                    8.2 BATJ高频
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../chapter7/interview-strings-overviews.html">
+            
+                <a href="../../chapter7/interview-strings-overviews.html">
+            
+                    
+                    8.3 字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../chapter7/interview-arrays-overviews.html">
+            
+                <a href="../../chapter7/interview-arrays-overviews.html">
+            
+                    
+                    8.4 数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../../chapter7/interview-stack-vs-quene-overviews.html">
+            
+                <a href="../../chapter7/interview-stack-vs-quene-overviews.html">
+            
+                    
+                    8.5 栈和队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../../chapter7/interview-linkedlist-overviews.html">
+            
+                <a href="../../chapter7/interview-linkedlist-overviews.html">
+            
+                    
+                    8.6 链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../../chapter7/interview-map-vs-tree-overviews.html">
+            
+                <a href="../../chapter7/interview-map-vs-tree-overviews.html">
+            
+                    
+                    8.7 图与树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="../../chapter7/interview-probablys.html">
+            
+                <a href="../../chapter7/interview-probablys.html">
+            
+                    
+                    8.8 概率论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.9" data-path="../../chapter7/interview-probablys.html">
+            
+                <a href="../../chapter7/interview-probablys.html">
+            
+                    
+                    8.9 O(N)时间难题简化相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../question/DeepLearningBookQA_cn.html">
+            
+                <a href="../../question/DeepLearningBookQA_cn.html">
+            
+                    
+                    9 问题集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >4.1.4.10 二叉排序树</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="41410-&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;">4.1.4.10 &#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;</h1>
+<h2 id="&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x5B9A;&#x4E49;">&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x5B9A;&#x4E49;</h2>
+<p>&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x53C8;&#x79F0;&#x4E3A;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF0C;&#x5B83;&#x6216;&#x8005;&#x662F;&#x4E00;&#x9897;&#x7A7A;&#x6811;&#xFF0C;&#x6216;&#x8005;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x6027;&#x8D28;&#x7684;&#x4E8C;&#x53C9;&#x6811;&#x3002;</p>
+<ol>
+<li>&#x82E5;&#x5B83;&#x7684;&#x5DE6;&#x5B50;&#x6811;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x5DE6;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5747;&#x5C0F;&#x4E8E;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;</li>
+<li>&#x82E5;&#x5B83;&#x7684;&#x53F3;&#x5B50;&#x6811;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x53F3;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5747;&#x5927;&#x4E8E;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;</li>
+<li>&#x5DE6;&#x3001;&#x53F3;&#x5B50;&#x6811;&#x672C;&#x8EAB;&#x662F;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;</li>
+</ol>
+<p><img src="http://data.biancheng.net/uploads/allimg/171016/2-1G01615222R04.png" alt="&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x793A;&#x610F;&#x56FE;"></p>
+<h2 id="&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;">&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;</h2>
+<p>&#x56E0;&#x4E3A;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E2D;&#x5DE6;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x7ED3;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#x5747;&#x5C0F;&#x4E8E;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x53F3;&#x5B50;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#x5747;&#x5927;&#x4E8E;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E0A;&#x8FDB;&#x884C;&#x67E5;&#x627E;&#x7684;&#x8FC7;&#x7A0B;&#x4E3A;&#xFF1A;</p>
+<p>&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x975E;&#x7A7A;&#x65F6;&#xFF0C;&#x5C06;&#x7ED9;&#x5B9A;&#x503C;&#x4E0E;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#x503C;&#x505A;&#x6BD4;&#x8F83;</p>
+<ol>
+<li>&#x82E5;&#x76F8;&#x7B49;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x6210;&#x529F;&#xFF1B;</li>
+<li>&#x82E5;&#x4E0D;&#x7B49;&#xFF0C;&#x5F53;&#x6839;&#x8282;&#x70B9;&#x7684;&#x5173;&#x952E;&#x5B57;&#x503C;&#x5927;&#x4E8E;&#x7ED9;&#x5B9A;&#x503C;&#x65F6;&#xFF0C;&#x4E0B;&#x4E00;&#x6B65;&#x7684;&#x6839;&#x7684;<code>&#x5DE6;&#x5B50;&#x6811;</code>&#x4E2D;&#x8FDB;&#x884C;&#x67E5;&#x627E;&#xFF0C;&#x5426;&#x5219;&#x5230;&#x6839;&#x7684;<code>&#x53F3;&#x5B50;&#x6811;</code>&#x4E2D;&#x8FDB;&#x884C;&#x67E5;&#x627E;&#x3002;</li>
+<li>&#x82E5;&#x67E5;&#x627E;&#x6210;&#x529F;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x662F;&#x8D70;&#x4E86;&#x4E00;&#x6761;&#x4ECE;&#x6811;&#x6839;&#x5230;&#x6240;&#x627E;&#x7ED3;&#x70B9;&#x7684;&#x8DEF;&#x5F84;&#x3002;</li>
+<li>&#x5426;&#x5219;&#xFF0C;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x7EC8;&#x6B62;&#x4E8E;&#x4E00;&#x68F5;&#x7A7A;&#x7684;&#x5B50;&#x6811;&#x3002;</li>
+</ol>
+<font color="#008000">&#x8BBE;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x91C7;&#x7528;&#x4E8C;&#x53C9;&#x94FE;&#x8868;&#x5B58;&#x50A8;</font>&#xFF0C;&#x7ED3;&#x70B9;&#x7684;&#x7C7B;&#x578B;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+
+```c
+//&#x7ED3;&#x70B9;&#x7ED3;&#x6784;&#x6784;&#x9020;
+typedef struct BiThrNode{
+    TElemType data;//&#x6570;&#x636E;&#x57DF;
+    struct BiThrNode* lchild,*rchild;//&#x5DE6;&#x5B69;&#x5B50;&#xFF0C;&#x53F3;&#x5B69;&#x5B50;&#x6307;&#x9488;&#x57DF;
+}BSTNode,*BSTree;
+```
+
+<font color="red">&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x67E5;&#x627E;&#x7B97;&#x6CD5;</font>
+
+
+<pre><code class="lang-c"><span class="hljs-comment">// &#x5728;root&#x6307;&#x5411;&#x6839;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E2D;&#x67E5;&#x627E;&#x952E;&#x503C;&#x4E3A; key &#x7684;&#x7ED3;&#x70B9;</span>
+<span class="hljs-comment">// &#x82E5;&#x627E;&#x5230;&#xFF0C;&#x8FD4;&#x56DE;&#x8BE5;&#x7ED3;&#x70B9;&#x7684;&#x6307;&#x9488;&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x7A7A;&#x6307;&#x9488; NULL</span>
+<span class="hljs-function">BSTree <span class="hljs-title">SearchBST</span><span class="hljs-params">(BSTree root, BSTree *father)</span>
+</span>{
+    BSTree p = root;
+    *father = <span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">while</span>(p &amp;&amp; p-&gt;data != key)
+    {
+        *father = p;
+        <span class="hljs-keyword">if</span>(key &lt; p-&gt; data) 
+            p = p-&gt;lchild;
+        <span class="hljs-keyword">else</span>
+            p = p-&gt;rchild;
+    }<span class="hljs-comment">/* while */</span>
+    <span class="hljs-keyword">return</span> p;
+}<span class="hljs-comment">/* SearchBST */</span>
+
+
+<span class="hljs-function">BiTree <span class="hljs-title">SearchBST</span><span class="hljs-params">(BiTree T,KeyType key)</span></span>{
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x9012;&#x5F52;&#x8FC7;&#x7A0B;&#x4E2D; T &#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x7ED3;&#x679C;&#xFF0C;&#x8FD4;&#x56DE;NULL&#xFF1B;&#x6216;&#x8005;&#x67E5;&#x627E;&#x6210;&#x529F;&#xFF0C;&#x8FD4;&#x56DE;&#x6307;&#x5411;&#x8BE5;&#x5173;&#x952E;&#x5B57;&#x7684;&#x6307;&#x9488;</span>
+    <span class="hljs-keyword">if</span> (!T || key==T-&gt;data) {
+        <span class="hljs-keyword">return</span> T;
+    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key&lt;T-&gt;data){
+        <span class="hljs-comment">//&#x9012;&#x5F52;&#x904D;&#x5386;&#x5176;&#x5DE6;&#x5B69;&#x5B50;</span>
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;lchild, key);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-comment">//&#x9012;&#x5F52;&#x904D;&#x5386;&#x5176;&#x53F3;&#x5B69;&#x5B50;</span>
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;rchild, key);
+    }
+}
+</code></pre>
+<h2 id="&#x63D2;&#x5165;&#x7ED3;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;">&#x63D2;&#x5165;&#x7ED3;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;</h2>
+<p>&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x672C;&#x8EAB;&#x662F;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x7684;&#x4E00;&#x79CD;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#xFF0C;&#x6709;&#x65F6;&#x4F1A;&#x5728;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x4E2D;&#x63D2;&#x5165;&#x6216;&#x8005;&#x5220;&#x9664;&#x8868;&#x4E2D;&#x5143;&#x7D20;&#xFF0C;&#x5F53;&#x56E0;&#x4E3A;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x800C;&#x9700;&#x8981;&#x63D2;&#x5165;&#x6570;&#x636E;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x8BE5;&#x6570;&#x636E;&#x5143;&#x7D20;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x4E00;&#x5B9A;&#x4F4D;&#x4E8E;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x4E14;&#x4E00;&#x5B9A;&#x662F;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x65F6;&#x8BBF;&#x95EE;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x5DE6;&#x5B69;&#x5B50;&#x6216;&#x8005;&#x53F3;&#x5B69;&#x5B50;&#x3002;</p>
+<blockquote>
+<p>&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x672C;&#x8EAB;&#x662F;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x7684;&#x4E00;&#x79CD;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#xFF0C;&#x6709;&#x65F6;&#x4F1A;&#x5728;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x4E2D;&#x63D2;&#x5165;&#x6216;&#x8005;&#x5220;&#x9664;&#x8868;&#x4E2D;&#x5143;&#x7D20;&#xFF0C;&#x5F53;&#x56E0;&#x4E3A;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x800C;&#x9700;&#x8981;&#x63D2;&#x5165;&#x6570;&#x636E;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x8BE5;&#x6570;&#x636E;&#x5143;&#x7D20;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x4E00;&#x5B9A;&#x4F4D;&#x4E8E;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x4E14;&#x4E00;&#x5B9A;&#x662F;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x65F6;&#x8BBF;&#x95EE;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x5DE6;&#x5B69;&#x5B50;&#x6216;&#x8005;&#x53F3;&#x5B69;&#x5B50;&#x3002;</p>
+</blockquote>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x8868;&#x793A;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x505A;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x7A0D;&#x5FAE;&#x66F4;&#x6539;&#x4E00;&#x4E0B;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-function">BOOL <span class="hljs-title">SearchBST</span><span class="hljs-params">(BiTree T,KeyType key,BiTree f,BiTree *p)</span></span>{
+    <span class="hljs-comment">//&#x5982;&#x679C; T &#x6307;&#x9488;&#x4E3A;&#x7A7A;&#xFF0C;&#x8BF4;&#x660E;&#x67E5;&#x627E;&#x5931;&#x8D25;&#xFF0C;&#x4EE4; p &#x6307;&#x9488;&#x6307;&#x5411;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x7684;&#x4FE1;&#x606F;</span>
+    <span class="hljs-keyword">if</span> (!T){
+        *p=f;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x76F8;&#x7B49;&#xFF0C;&#x4EE4; p &#x6307;&#x9488;&#x6307;&#x5411;&#x8BE5;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x67E5;&#x627E;&#x6210;&#x529F;&#x4FE1;&#x606F;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key==T-&gt;data){
+        *p=T;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C; key &#x503C;&#x6BD4; T &#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5C0F;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#xFF1B;&#x53CD;&#x4E4B;&#xFF0C;&#x67E5;&#x627E;&#x5176;&#x53F3;&#x5B50;&#x6811;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key&lt;T-&gt;data){
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;lchild,key,T,p);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;rchild,key,T,p);
+    }
+}
+<span class="hljs-comment">//&#x63D2;&#x5165;&#x51FD;&#x6570;</span>
+<span class="hljs-function">BOOL <span class="hljs-title">InsertBST</span><span class="hljs-params">(BiTree T,ElemType e)</span></span>{
+    BiTree p=<span class="hljs-literal">NULL</span>;
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x67E5;&#x627E;&#x4E0D;&#x6210;&#x529F;&#xFF0C;&#x9700;&#x505A;&#x63D2;&#x5165;&#x64CD;&#x4F5C;</span>
+    <span class="hljs-keyword">if</span> (!SearchBST(T, e,<span class="hljs-literal">NULL</span>,&amp;p)) {
+        <span class="hljs-comment">//&#x521D;&#x59CB;&#x5316;&#x63D2;&#x5165;&#x7ED3;&#x70B9;</span>
+        BiTree s=(BiTree)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(BiTree));
+        s-&gt;data=e;
+        s-&gt;lchild=s-&gt;rchild=<span class="hljs-literal">NULL</span>;
+        <span class="hljs-comment">//&#x5982;&#x679C; p &#x4E3A;NULL&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E3A;&#x7A7A;&#x6811;&#xFF0C;&#x6B64;&#x65F6;&#x63D2;&#x5165;&#x7684;&#x7ED3;&#x70B9;&#x4E3A;&#x6574;&#x68F5;&#x6811;&#x7684;&#x6839;&#x7ED3;&#x70B9;</span>
+        <span class="hljs-keyword">if</span> (!p) {
+            T=s;
+        }
+        <span class="hljs-comment">//&#x5982;&#x679C; p &#x4E0D;&#x4E3A; NULL&#xFF0C;&#x5219; p &#x6307;&#x5411;&#x7684;&#x4E3A;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x6BD4;&#x8F83; p &#x548C; e &#x7684;&#x503C;&#x786E;&#x5B9A; s &#x5230;&#x5E95;&#x662F; p &#x7684;&#x5DE6;&#x5B69;&#x5B50;&#x8FD8;&#x662F;&#x53F3;&#x5B69;&#x5B50;</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e&lt;p-&gt;data){
+            p-&gt;lchild=s;
+        }<span class="hljs-keyword">else</span>{
+            p-&gt;rchild=s;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x67E5;&#x627E;&#x6210;&#x529F;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x505A;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#xFF0C;&#x63D2;&#x5165;&#x5931;&#x8D25;</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<p>&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x5BF9;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x505A;&#x67E5;&#x627E;&#x548C;&#x63D2;&#x5165;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x540C;&#x65F6;&#x5728;&#x4E2D;&#x5E8F;&#x904D;&#x5386;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6709;&#x5173;&#x6240;&#x6709;&#x5173;&#x952E;&#x5B57;&#x7684;&#x4E00;&#x4E2A;&#x6709;&#x5E8F;&#x7684;&#x5E8F;&#x5217;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5047;&#x8BBE;&#x539F;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E3A;&#x7A7A;&#x6811;&#xFF0C;&#x5728;&#x5BF9;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868; <code>{3&#xFF0C;5&#xFF0C;7&#xFF0C;2&#xFF0C;1}</code> &#x505A;&#x67E5;&#x627E;&#x4EE5;&#x53CA;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x6784;&#x5EFA;&#x51FA;&#x4E00;&#x4E2A;&#x542B;&#x6709;&#x8868;&#x4E2D;&#x6240;&#x6709;&#x5173;&#x952E;&#x5B57;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#xFF0C;&#x8FC7;&#x7A0B;&#x5982;&#x56FE; 2 &#x6240;&#x793A;:</p>
+<p><img src="http://data.biancheng.net/uploads/allimg/171016/2-1G016152600A4.png" alt="&#x56FE; 2 &#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x63D2;&#x5165;&#x8FC7;&#x7A0B;"></p>
+<p>&#x901A;&#x8FC7;&#x4E0D;&#x65AD;&#x7684;&#x67E5;&#x627E;&#x548C;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#xFF0C;&#x6700;&#x7EC8;&#x6784;&#x5EFA;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x5982;&#x56FE; 2&#xFF08;5&#xFF09; &#x6240;&#x793A;&#x3002;&#x5F53;&#x4F7F;&#x7528;&#x4E2D;&#x5E8F;&#x904D;&#x5386;&#x7B97;&#x6CD5;&#x904D;&#x5386;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x65F6;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x5E8F;&#x5217;&#x4E3A;&#xFF1A;<code>1 2 3 5 7</code>&#xFF0C;&#x4E3A;&#x6709;&#x5E8F;&#x5E8F;&#x5217;&#x3002;</p>
+<font color="red">&#x4E00;&#x4E2A;&#x65E0;&#x5E8F;&#x5E8F;&#x5217;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6784;&#x5EFA;&#x4E00;&#x68F5;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#xFF0C;&#x4ECE;&#x800C;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x6709;&#x5E8F;&#x5E8F;&#x5217;&#x3002;</font>
+
+
+
+<h2 id="&#x5220;&#x9664;&#x7ED3;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;">&#x5220;&#x9664;&#x7ED3;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;</h2>
+<p>&#x5728;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x4F7F;&#x7528;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x8868;&#x793A;&#x7684;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x4E2D;&#x5220;&#x9664;&#x67D0;&#x4E2A;&#x6570;&#x636E;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x6210;&#x529F;&#x5220;&#x9664;&#x8BE5;&#x7ED3;&#x70B9;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x4F9D;&#x65E7;&#x4F7F;&#x8FD9;&#x68F5;&#x6811;&#x4E3A;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x8981;&#x5220;&#x9664;&#x7684;&#x4E3A;&#x7ED3;&#x70B9; p&#xFF0C;&#x5219;&#x5BF9;&#x4E8E;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x6839;&#x636E;&#x7ED3;&#x70B9; p &#x6240;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x4F4D;&#x7F6E;&#x4F5C;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B; 3 &#x79CD;&#x53EF;&#x80FD;&#xFF1A;</p>
+<ol>
+<li>&#x7ED3;&#x70B9; p &#x4E3A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x6B64;&#x65F6;&#x53EA;&#x9700;&#x8981;&#x5220;&#x9664;&#x8BE5;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x4FEE;&#x6539;&#x5176;&#x53CC;&#x4EB2;&#x7ED3;&#x70B9;&#x7684;&#x6307;&#x9488;&#x5373;&#x53EF;&#xFF1B;</li>
+<li>&#x7ED3;&#x70B9; p &#x53EA;&#x6709;&#x5DE6;&#x5B50;&#x6811;&#x6216;&#x8005;&#x53EA;&#x6709;&#x53F3;&#x5B50;&#x6811;&#xFF0C;&#x6B64;&#x65F6;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#x6216;&#x8005;&#x53F3;&#x5B50;&#x6811;&#x76F4;&#x63A5;&#x53D8;&#x4E3A;&#x7ED3;&#x70B9; p &#x53CC;&#x4EB2;&#x7ED3;&#x70B9;&#x7684;&#x5DE6;&#x5B50;&#x6811;&#x5373;&#x53EF;&#xFF1B;</li>
+<li>&#x7ED3;&#x70B9; p &#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x90FD;&#x6709;&#xFF0C;&#x6B64;&#x65F6;&#x6709;&#x4E24;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF1A;</li>
+</ol>
+<p>3.1&#xFF09;&#x4EE4;&#x7ED3;&#x70B9; p &#x7684;&#x5DE6;&#x5B50;&#x6811;&#x4E3A;&#x5176;&#x53CC;&#x4EB2;&#x7ED3;&#x70B9;&#x7684;&#x5DE6;&#x5B50;&#x6811;&#xFF1B;&#x7ED3;&#x70B9; p &#x7684;&#x53F3;&#x5B50;&#x6811;&#x4E3A;&#x5176;&#x81EA;&#x8EAB;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#x7ED3;&#x70B9;&#x7684;&#x53F3;&#x5B50;&#x6811;&#xFF0C;&#x5982;&#x56FE; 3 &#x6240;&#x793A;&#xFF1B;</p>
+<p><img src="http://data.biancheng.net/uploads/allimg/171016/2-1G016152R32b.png" alt="&#x56FE; 3 &#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E2D;&#x5220;&#x9664;&#x7ED3;&#x70B9;&#xFF08;1&#xFF09;"></p>
+<p>3.2&#xFF09;&#x7528;&#x7ED3;&#x70B9; p &#x7684;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#xFF08;&#x6216;&#x76F4;&#x63A5;&#x540E;&#x7EE7;&#xFF09;&#x6765;&#x4EE3;&#x66FF;&#x7ED3;&#x70B9; p&#xFF0C;&#x540C;&#x65F6;&#x5728;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E2D;&#x5BF9;&#x5176;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#xFF08;&#x6216;&#x76F4;&#x63A5;&#x540E;&#x7EE7;&#xFF09;&#x505A;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x56FE; 4 &#x4E3A;&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#x4EE3;&#x66FF;&#x7ED3;&#x70B9; p&#xFF1A;</p>
+<p><img src="http://data.biancheng.net/uploads/allimg/171016/2-1G016152T5W2.png" alt="&#x56FE; 4 &#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E2D;&#x5220;&#x9664;&#x7ED3;&#x70B9;&#xFF08;2&#xFF09;"></p>
+<blockquote>
+<p>&#x56FE; 4 &#x4E2D;&#xFF0C;&#x5728;&#x5BF9;&#x5DE6;&#x56FE;&#x8FDB;&#x884C;&#x4E2D;&#x5E8F;&#x904D;&#x5386;&#x65F6;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x70B9; p &#x7684;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#x7ED3;&#x70B9;&#x4E3A;&#x7ED3;&#x70B9; s&#xFF0C;&#x6240;&#x4EE5;&#x76F4;&#x63A5;&#x7528;&#x7ED3;&#x70B9; s &#x8986;&#x76D6;&#x7ED3;&#x70B9; p&#xFF0C;&#x7531;&#x4E8E;&#x7ED3;&#x70B9; s &#x8FD8;&#x6709;&#x5DE6;&#x5B69;&#x5B50;&#xFF0C;&#x6839;&#x636E;&#x7B2C; 2 &#x6761;&#x89C4;&#x5219;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x5176;&#x53D8;&#x4E3A;&#x53CC;&#x4EB2;&#x7ED3;&#x70B9;&#x7684;&#x53F3;&#x5B69;&#x5B50;&#x3002;</p>
+</blockquote>
+<p>&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#xFF1A;&#xFF08;&#x53EF;&#x8FD0;&#x884C;&#xFF09;</p>
+<pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TRUE 1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FALSE 0</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ElemType int</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>  KeyType int</span>
+<span class="hljs-comment">/* &#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x8282;&#x70B9;&#x7ED3;&#x6784;&#x5B9A;&#x4E49; */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> BiTNode
+{
+    <span class="hljs-keyword">int</span> data;
+    <span class="hljs-keyword">struct</span> BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+<span class="hljs-comment">//&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x67E5;&#x627E;&#x7B97;&#x6CD5;</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">SearchBST</span><span class="hljs-params">(BiTree T,KeyType key,BiTree f,BiTree *p)</span></span>{
+    <span class="hljs-comment">//&#x5982;&#x679C; T &#x6307;&#x9488;&#x4E3A;&#x7A7A;&#xFF0C;&#x8BF4;&#x660E;&#x67E5;&#x627E;&#x5931;&#x8D25;&#xFF0C;&#x4EE4; p &#x6307;&#x9488;&#x6307;&#x5411;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x7684;&#x4FE1;&#x606F;</span>
+    <span class="hljs-keyword">if</span> (!T){
+        *p=f;
+        <span class="hljs-keyword">return</span> FALSE;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x76F8;&#x7B49;&#xFF0C;&#x4EE4; p &#x6307;&#x9488;&#x6307;&#x5411;&#x8BE5;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x67E5;&#x627E;&#x6210;&#x529F;&#x4FE1;&#x606F;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key==T-&gt;data){
+        *p=T;
+        <span class="hljs-keyword">return</span> TRUE;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C; key &#x503C;&#x6BD4; T &#x6839;&#x7ED3;&#x70B9;&#x7684;&#x503C;&#x5C0F;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#xFF1B;&#x53CD;&#x4E4B;&#xFF0C;&#x67E5;&#x627E;&#x5176;&#x53F3;&#x5B50;&#x6811;</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key&lt;T-&gt;data){
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;lchild,key,T,p);
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;rchild,key,T,p);
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">InsertBST</span><span class="hljs-params">(BiTree *T,ElemType e)</span></span>{
+    BiTree p=<span class="hljs-literal">NULL</span>;
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x67E5;&#x627E;&#x4E0D;&#x6210;&#x529F;&#xFF0C;&#x9700;&#x505A;&#x63D2;&#x5165;&#x64CD;&#x4F5C;</span>
+    <span class="hljs-keyword">if</span> (!SearchBST((*T), e,<span class="hljs-literal">NULL</span>,&amp;p)) {
+        <span class="hljs-comment">//&#x521D;&#x59CB;&#x5316;&#x63D2;&#x5165;&#x7ED3;&#x70B9;</span>
+        BiTree s=(BiTree)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(BiTree));
+        s-&gt;data=e;
+        s-&gt;lchild=s-&gt;rchild=<span class="hljs-literal">NULL</span>;
+        <span class="hljs-comment">//&#x5982;&#x679C; p &#x4E3A;NULL&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x4E3A;&#x7A7A;&#x6811;&#xFF0C;&#x6B64;&#x65F6;&#x63D2;&#x5165;&#x7684;&#x7ED3;&#x70B9;&#x4E3A;&#x6574;&#x68F5;&#x6811;&#x7684;&#x6839;&#x7ED3;&#x70B9;</span>
+        <span class="hljs-keyword">if</span> (!p) {
+            *T=s;
+        }
+        <span class="hljs-comment">//&#x5982;&#x679C; p &#x4E0D;&#x4E3A; NULL&#xFF0C;&#x5219; p &#x6307;&#x5411;&#x7684;&#x4E3A;&#x67E5;&#x627E;&#x5931;&#x8D25;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x6BD4;&#x8F83; p &#x548C; e &#x7684;&#x503C;&#x786E;&#x5B9A; s &#x5230;&#x5E95;&#x662F; p &#x7684;&#x5DE6;&#x5B69;&#x5B50;&#x8FD8;&#x662F;&#x53F3;&#x5B69;&#x5B50;</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e &lt; p-&gt;data){
+            p-&gt;lchild=s;
+        }<span class="hljs-keyword">else</span>{
+            p-&gt;rchild=s;
+        }
+        <span class="hljs-keyword">return</span> TRUE;
+    }
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x67E5;&#x627E;&#x6210;&#x529F;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x505A;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#xFF0C;&#x63D2;&#x5165;&#x5931;&#x8D25;</span>
+    <span class="hljs-keyword">return</span> FALSE;
+}
+<span class="hljs-comment">//&#x5220;&#x9664;&#x51FD;&#x6570;</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Delete</span><span class="hljs-params">(BiTree *p)</span>
+</span>{
+    BiTree q, s;
+    <span class="hljs-comment">//&#x60C5;&#x51B5; 1&#xFF0C;&#x7ED3;&#x70B9; p &#x672C;&#x8EAB;&#x4E3A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x76F4;&#x63A5;&#x5220;&#x9664;&#x5373;&#x53EF;</span>
+    <span class="hljs-keyword">if</span>(!(*p)-&gt;lchild &amp;&amp; !(*p)-&gt;rchild){
+        *p = <span class="hljs-literal">NULL</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!(*p)-&gt;lchild){ <span class="hljs-comment">//&#x5DE6;&#x5B50;&#x6811;&#x4E3A;&#x7A7A;&#xFF0C;&#x53EA;&#x9700;&#x7528;&#x7ED3;&#x70B9; p &#x7684;&#x53F3;&#x5B50;&#x6811;&#x6839;&#x7ED3;&#x70B9;&#x4EE3;&#x66FF;&#x7ED3;&#x70B9; p &#x5373;&#x53EF;&#xFF1B;</span>
+        q = *p;
+        *p = (*p)-&gt;rchild;
+        <span class="hljs-built_in">free</span>(q);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!(*p)-&gt;rchild){<span class="hljs-comment">//&#x53F3;&#x5B50;&#x6811;&#x4E3A;&#x7A7A;&#xFF0C;&#x53EA;&#x9700;&#x7528;&#x7ED3;&#x70B9; p &#x7684;&#x5DE6;&#x5B50;&#x6811;&#x6839;&#x7ED3;&#x70B9;&#x4EE3;&#x66FF;&#x7ED3;&#x70B9; p &#x5373;&#x53EF;&#xFF1B;</span>
+        q = *p;
+        *p = (*p)-&gt;lchild;<span class="hljs-comment">//&#x8FD9;&#x91CC;&#x4E0D;&#x662F;&#x6307;&#x9488; *p &#x6307;&#x5411;&#x5DE6;&#x5B50;&#x6811;&#xFF0C;&#x800C;&#x662F;&#x5C06;&#x5DE6;&#x5B50;&#x6811;&#x5B58;&#x50A8;&#x7684;&#x7ED3;&#x70B9;&#x7684;&#x5730;&#x5740;&#x8D4B;&#x503C;&#x7ED9;&#x6307;&#x9488;&#x53D8;&#x91CF; p</span>
+        <span class="hljs-built_in">free</span>(q);
+    }
+    <span class="hljs-keyword">else</span>{<span class="hljs-comment">//&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x5747;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x91C7;&#x7528;&#x7B2C; 2 &#x79CD;&#x65B9;&#x5F0F;</span>
+        q = *p;
+        s = (*p)-&gt;lchild;
+        <span class="hljs-comment">//&#x904D;&#x5386;&#xFF0C;&#x627E;&#x5230;&#x7ED3;&#x70B9; p &#x7684;&#x76F4;&#x63A5;&#x524D;&#x9A71;</span>
+        <span class="hljs-keyword">while</span>(s-&gt;rchild)
+        {
+            q = s;
+            s = s-&gt;rchild;
+        }
+        <span class="hljs-comment">//&#x76F4;&#x63A5;&#x6539;&#x53D8;&#x7ED3;&#x70B9; p &#x7684;&#x503C;</span>
+        (*p)-&gt;data = s-&gt;data;
+        <span class="hljs-comment">//&#x5224;&#x65AD;&#x7ED3;&#x70B9; p &#x7684;&#x5DE6;&#x5B50;&#x6811; s &#x662F;&#x5426;&#x6709;&#x53F3;&#x5B50;&#x6811;&#xFF0C;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x8BA8;&#x8BBA;</span>
+        <span class="hljs-keyword">if</span>( q != *p ){
+            q-&gt;rchild = s-&gt;lchild;<span class="hljs-comment">//&#x82E5;&#x6709;&#xFF0C;&#x5219;&#x5728;&#x5220;&#x9664;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#x7ED3;&#x70B9;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x4EE4;&#x524D;&#x9A71;&#x7684;&#x5DE6;&#x5B69;&#x5B50;&#x7ED3;&#x70B9;&#x6539;&#x4E3A; q &#x6307;&#x5411;&#x7ED3;&#x70B9;&#x7684;&#x5B69;&#x5B50;&#x7ED3;&#x70B9;</span>
+        }<span class="hljs-keyword">else</span>{
+            q-&gt;lchild = s-&gt;lchild;<span class="hljs-comment">//&#x5426;&#x5219;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x5DE6;&#x5B50;&#x6811;&#x4E0A;&#x79FB;&#x5373;&#x53EF;</span>
+        }
+        <span class="hljs-built_in">free</span>(s);
+    }
+    <span class="hljs-keyword">return</span> TRUE;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">DeleteBST</span><span class="hljs-params">(BiTree *T, <span class="hljs-keyword">int</span> key)</span>
+</span>{
+    <span class="hljs-keyword">if</span>( !(*T)){<span class="hljs-comment">//&#x4E0D;&#x5B58;&#x5728;&#x5173;&#x952E;&#x5B57;&#x7B49;&#x4E8E;key&#x7684;&#x6570;&#x636E;&#x5143;&#x7D20;</span>
+        <span class="hljs-keyword">return</span> FALSE;
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-keyword">if</span>( key == (*T)-&gt;data ){
+            Delete(T);
+            <span class="hljs-keyword">return</span> TRUE;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( key &lt; (*T)-&gt;data){
+            <span class="hljs-comment">//&#x4F7F;&#x7528;&#x9012;&#x5F52;&#x7684;&#x65B9;&#x5F0F;</span>
+            <span class="hljs-keyword">return</span> DeleteBST(&amp;(*T)-&gt;lchild, key);
+        }
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> DeleteBST(&amp;(*T)-&gt;rchild, key);
+        }
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">order</span><span class="hljs-params">(BiTree t)</span><span class="hljs-comment">//&#x4E2D;&#x5E8F;&#x8F93;&#x51FA;</span>
+</span>{
+    <span class="hljs-keyword">if</span>(t == <span class="hljs-literal">NULL</span>){
+        <span class="hljs-keyword">return</span> ;
+    }
+    order(t-&gt;lchild);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, t-&gt;data);
+    order(t-&gt;rchild);
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>};
+    BiTree T = <span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">for</span>( i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++ ){
+        InsertBST(&amp;T, a[i]);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&#x4E2D;&#x5E8F;&#x904D;&#x5386;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#xFF1A;\n&quot;</span>);
+    order(T);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&#x5220;&#x9664;3&#x540E;&#xFF0C;&#x4E2D;&#x5E8F;&#x904D;&#x5386;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#xFF1A;\n&quot;</span>);
+    DeleteBST(&amp;T,<span class="hljs-number">3</span>);
+    order(T);
+}
+</code></pre>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p>&#x4F7F;&#x7528;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x5728;&#x67E5;&#x627E;&#x8868;&#x4E2D;&#x505A;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x540C;&#x5EFA;&#x7ACB;&#x7684;&#x4E8C;&#x53C9;&#x6811;&#x672C;&#x8EAB;&#x7684;&#x7ED3;&#x6784;&#x6709;&#x5173;&#x3002;&#x5373;&#x4F7F;&#x67E5;&#x627E;&#x8868;&#x4E2D;&#x5404;&#x6570;&#x636E;&#x5143;&#x7D20;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x6392;&#x5217;&#x987A;&#x5E8F;&#xFF0C;&#x6784;&#x5EFA;&#x51FA;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x5927;&#x4E0D;&#x76F8;&#x540C;&#x3002;
+&#x4F8B;&#x5982;&#xFF1A;&#x67E5;&#x627E;&#x8868; <code>{45&#xFF0C;24&#xFF0C;53&#xFF0C;12&#xFF0C;37&#xFF0C;93}</code> &#x548C;&#x8868; <code>{12&#xFF0C;24&#xFF0C;37&#xFF0C;45&#xFF0C;53&#xFF0C;93}</code> &#x5404;&#x81EA;&#x6784;&#x5EFA;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x56FE;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="http://data.biancheng.net/uploads/allimg/171016/2-1G0161532523G.png" alt="&#x56FE; 5 &#x4E0D;&#x540C;&#x6784;&#x9020;&#x7684;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;"></p>
+<p>&#x4F7F;&#x7528;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x5B9E;&#x73B0;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x4ECE;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x7684;&#x6839;&#x7ED3;&#x70B9;&#x5230;&#x67E5;&#x627E;&#x5143;&#x7D20;&#x7ED3;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6240;&#x4EE5;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x540C;&#x88AB;&#x67E5;&#x627E;&#x5143;&#x7D20;&#x6240;&#x5728;&#x7684;&#x6811;&#x7684;&#x6DF1;&#x5EA6;&#xFF08;&#x5C42;&#x6B21;&#x6570;&#xFF09;&#x6709;&#x5173;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x5F25;&#x8865;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x6784;&#x9020;&#x65F6;&#x4EA7;&#x751F;&#x5982;&#x56FE; 5 &#x53F3;&#x4FA7;&#x6240;&#x793A;&#x7684;&#x5F71;&#x54CD;&#x7B97;&#x6CD5;&#x6548;&#x7387;&#x7684;&#x56E0;&#x7D20;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x4E8C;&#x53C9;&#x6392;&#x5E8F;&#x6811;&#x505A;&#x201C;&#x5E73;&#x8861;&#x5316;&#x201D;&#x5904;&#x7406;&#xFF0C;&#x4F7F;&#x5176;&#x6210;&#x4E3A;&#x4E00;&#x68F5;&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;&#x3002;</p>
+<p><font color="red">&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;&#x662F;&#x52A8;&#x6001;&#x67E5;&#x627E;&#x8868;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF0C;</font>&#x4E0B;&#x4E00;&#x8282;&#x505A;&#x91CD;&#x70B9;&#x4ECB;&#x7ECD;&#x3002;</p>
+
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="algorithms-semantic-analysis-tree.html" class="navigation navigation-prev " aria-label="Previous page: 4.1.4.9 语义分析">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="algorithms-linke-recursion-dstack.html" class="navigation navigation-next " aria-label="Next page: 4.1.5 链表递归栈">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4.1.4.10 二叉排序树","level":"1.5.1.4.14","depth":4,"next":{"title":"4.1.5 链表递归栈","level":"1.5.1.5","depth":3,"path":"chapter3/algorithms/algorithms-linke-recursion-dstack.md","ref":"chapter3/algorithms/algorithms-linke-recursion-dstack.md","articles":[]},"previous":{"title":"4.1.4.9 语义分析","level":"1.5.1.4.13","depth":4,"path":"chapter3/algorithms/algorithms-semantic-analysis-tree.md","ref":"chapter3/algorithms/algorithms-semantic-analysis-tree.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","popup","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"popup":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"ljee <ljee8290@gmail.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":40,"left":40,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"机器学习笔记","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"机器学习相关","extension":null},"file":{"path":"chapter3/algorithms/algorithms-tree-binary-sorts-tree.md","mtime":"2020-10-30T08:07:16.772Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-30T08:08:09.851Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
