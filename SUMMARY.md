@@ -193,7 +193,7 @@
         * [6.6.2 数据分析_相关性](chapter5/statistics/statistics-data-analyst-read.md)
         * [6.6.3 数据分析_回归分析](chapter5/statistics/statistics-data-analyst-read.md)
         * [6.6.4 分类与预测](chapter5/statistics/statistics-data-analyst-read.md)
-        * [6.6.5 临近度与聚类](chapter5/statistics/statistics-data-analyst-read.md)
+        * [6.6.5 临近度与聚类](chapter5/statistics/statistics-data-analyst-FP-Growth.md)
         * [6.6.6 事务性数据与关联分析](chapter5/statistics/statistics-data-analyst-read.md)
         * [6.6.7 数据案例分析](chapter5/statistics/statistics-data-analyst-read.md)
         * [6.6.8 时间序列分析与金融数据](chapter5/statistics/statistics-data-analyst-read.md)
