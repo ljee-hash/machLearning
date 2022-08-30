@@ -170,12 +170,7 @@ Fp-growth算法包含两个部分：
 #### 生成 $Fp$ 树
 
 
-
-
-
-
-<html>
-    <table style="margin-left: auto; margin-right: auto;">
+ <table style="margin-left: auto; margin-right: auto;">
         <tr>
             <td> 
              <!--左侧内容-->
@@ -196,4 +191,3 @@ Fp-growth算法包含两个部分：
          </td>
         </tr>
     </table>
-</html>
