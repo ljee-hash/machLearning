@@ -169,12 +169,6 @@ Fp-growth算法包含两个部分：
 
 #### 生成 $Fp$ 树
 
-
- <table style="margin-left: auto; margin-right: auto;">
-        <tr>
-            <td> 
-             <!--左侧内容-->
-             
 |Item| Support|
 |--|--|
 |L2 | 9|
@@ -182,6 +176,13 @@ Fp-growth算法包含两个部分：
 |L2 | 7|
 |L2 | 5|
 |L2 | 5|
+
+ <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td> 
+             <!--左侧内容-->
+             
+
          
          </td>
             <td> 
