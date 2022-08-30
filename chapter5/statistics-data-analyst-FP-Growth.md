@@ -167,3 +167,33 @@ Fp-growth算法包含两个部分：
 |09 | L2，L1，L3，L4，L5|
 |10 | L2，L1，L3，L4|
 
+#### 生成 $Fp$ 树
+
+
+
+
+
+
+<html>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td> 
+             <!--左侧内容-->
+             
+|Item| Support|
+|--|--|
+|L2 | 9|
+|L2 | 7|
+|L2 | 7|
+|L2 | 5|
+|L2 | 5|
+         
+         </td>
+            <td> 
+             <!--右侧内容--> 右侧
+         
+         
+         </td>
+        </tr>
+    </table>
+</html>
