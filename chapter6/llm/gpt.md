@@ -358,8 +358,15 @@ if __name__ == "__main__":
 3. **真正的 Any-to-Any 交互**：不仅能做到“看图说话（Image-to-Text）”，还能直接在对话上下文中做到“边说边画（Text-to-Image）”或“图像编辑（Image+Text-to-Image）”。
 
 
+#####  生产实践建议
+建议在此基础上进行以下方向的升级：
 
-
+1. **引入 KV Cache**：
+在 `TransformerBlock` 中加入 Key-Value 缓存机制，在 `generate` 时每次只送入新生成单步 Token 的 Embedding，减少 $O(N^2)$ 的重复计算开销。
+2. **多模态位置编码（Multimodal RoPE）**：
+针对图像 Patch（2D 空间位置）与文本（1D 时间位置），推荐将传统的 1D 位置编码升级为 **2D/3D RoPE (Rotary Position Embedding)**，以增强模型对图像空间结构的感知力。
+3. **结合扩散模型解码（Diffusion Head / Flow Matching）**：
+虽然离散 Codebook（如 VQ-GAN）适用于自回归生成，但目前主流图像生成（如 Seed-MM、Chameleon 等）逐渐趋向于使用 **Continuous Embeddings + Flow Matching / Diffusion Loss** 作为图像生成 Head，以提升合成图像的画质细腻度。
 
 
 ####  2. **从 Dense 到 Sparse MoE 架构**：
