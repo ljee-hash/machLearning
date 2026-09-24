@@ -4,9 +4,8 @@
 
 > 当前最新的模型系列前沿大语言模型的版本对照列表（包括 GLM-5.3、GLM-5.2、Kimi K3、DeepSeek-V4 Pro-0813、Qwen3.8-Max、Opus 4.8、Fable 5 以及 GPT-5.6 Sol）
 
-图片中展示了当前一系列前沿大语言模型的版本对照列表（包括 GLM-5.3、GLM-5.2、Kimi K3、DeepSeek-V4 Pro-0813、Qwen3.8-Max、Opus 4.8、Fable 5 以及 GPT-5.6 Sol）。
 
-结合你提出的问题，GPT（Generative Pre-trained Transformer）系列模型能够引领大模型技术浪潮，其**基础架构、理论支撑以及与传统模型的核心差别**可以拆解如下：
+GPT（Generative Pre-trained Transformer）系列模型能够引领大模型技术浪潮，其**基础架构、理论支撑以及与传统模型的核心差别**可以拆解如下：
 
 ---
 
