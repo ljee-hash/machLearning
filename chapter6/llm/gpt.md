@@ -471,7 +471,131 @@ $$TopK\_Indices, TopK\_Weights = \text{TopK}(\text{Softmax}(x \cdot W_{gate}), K
 OpenAI 及业界最新的研究表明，大模型的 Scaling Law 不仅存在于 **预训练阶段（算力/数据 scaling）**，同样存在于 **推理阶段（Inference-Time Scaling）**：
 
 > 在面临复杂问题时，投入更多的推理端算力（如拉长生成长度、并行采样多条路径），可以持续、显著地提高模型的解题正确率。
- 
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class Expert(nn.Module):
+    """单专家网络 (Feed-Forward Network)"""
+
+    def __init__(self, d_model, hidden_dim):
+        super().__init__()
+        self.fc1 = nn.Linear(d_model, hidden_dim)
+        self.act = nn.GELU()
+        self.fc2 = nn.Linear(hidden_dim, d_model)
+
+    def forward(self, x):
+        return self.fc2(self.act(self.fc1(x)))
+
+
+class Top2SparseMoE(nn.Module):
+    """
+    Top-2 Sparse MoE 核心模块：
+    1. 门控计算 (含训练时加噪) 与 Top-2 过滤
+    2. Token 动态路由派发
+    3. 专家输出加权融合
+    """
+
+    def __init__(self, d_model, num_experts=8, top_k=2, hidden_dim=2048):
+        super().__init__()
+        self.num_experts = num_experts
+        self.top_k = top_k
+        self.d_model = d_model
+
+        # 门控线性层 (Routing/Gating Network)
+        self.gate = nn.Linear(d_model, num_experts, bias=False)
+
+        # 专家池 (Expert Pool)
+        self.experts = nn.ModuleList(
+            [Expert(d_model, hidden_dim) for _ in range(num_experts)]
+        )
+
+    def forward(self, x):
+        # x shape: [Batch, Seq_Len, d_model]
+        batch_size, seq_len, d_model = x.shape
+        x_flat = x.view(-1, d_model)  # 展平为 [N, d_model]，其中 N = Batch * Seq_Len
+
+        # ======================================================================
+        # 步骤 1: 门控打分与 Top-2 选配 (Gating & Top-K Selection)
+        # ======================================================================
+        logits = self.gate(x_flat)  # [N, num_experts]
+
+        # 训练阶段加入高斯噪声提升路由探索度，推理阶段关闭
+        if self.training:
+            noise = torch.randn_like(logits) * (1.0 / self.num_experts)
+            logits = logits + noise
+
+        # 获取得分最高的 Top-K 专家的权重与索引
+        topk_logits, topk_indices = torch.topk(logits, self.top_k, dim=-1)  # [N, top_k]
+
+        # 对 Top-K 权重进行 Softmax 归一化
+        topk_weights = F.softmax(topk_logits, dim=-1)  # [N, top_k]
+
+        # ======================================================================
+        # 步骤 2 & 3: 动态派发与专家输出加权聚合 (Routing & Aggregation)
+        # ======================================================================
+        final_output = torch.zeros_like(x_flat)
+
+        # 遍历每一个专家，提取指派给当前专家的 Token 并批量计算
+        for expert_idx in range(self.num_experts):
+            # 寻找选中了当前专家 expert_idx 的位置 (N, top_k)
+            batch_mask = topk_indices == expert_idx  # [N, top_k] 的 bool 矩阵
+
+            if not batch_mask.any():
+                continue
+
+            # 获取选中当前专家的 Token 索引 (token_ids) 以及对应的路由权重 (top_k_pos)
+            token_ids, top_k_pos = torch.where(batch_mask)
+
+            # 提取分配给该专家的输入 Token 向量
+            expert_input = x_flat[token_ids]  # [num_tokens, d_model]
+
+            # 专家计算
+            expert_output = self.experts[expert_idx](expert_input)  # [num_tokens, d_model]
+
+            # 提取该专家在对应 Token 上的路由权重并进行加权
+            routing_weights = topk_weights[token_ids, top_k_pos].unsqueeze(-1)  # [num_tokens, 1]
+            weighted_output = expert_output * routing_weights
+
+            # 累加加权后的专家输出到全局 Output 对应位置
+            final_output.index_add_(0, token_ids, weighted_output)
+
+        # 恢复原始形状 [Batch, Seq_Len, d_model]
+        return final_output.view(batch_size, seq_len, d_model)
+
+
+# ==============================================================================
+# 单元测试与验证
+# ==============================================================================
+if __name__ == "__main__":
+    print("=== 测试 Top-2 Sparse MoE 模块 ===")
+
+    # 超参数设置
+    B, S, D = 2, 8, 512  # Batch=2, Seq_Len=8, d_model=512
+    num_experts = 8
+    top_k = 2
+
+    # 实例化网络与输入
+    moe_layer = Top2SparseMoE(d_model=D, num_experts=num_experts, top_k=top_k)
+    dummy_input = torch.randn(B, S, D)
+
+    # 1. 前向传播测试
+    output = moe_layer(dummy_input)
+    print(f"输入形状: {dummy_input.shape}")
+    print(f"输出形状: {output.shape}")
+
+    assert (
+        output.shape == dummy_input.shape
+    ), "输出维度与输入维度不一致！"
+
+    # 2. 反向传播梯度校验
+    loss = output.sum()
+    loss.backward()
+    print("✓ 前向传播与反向传播梯度计算正常！")
+```
 
 ##### 2. System 2 的三大主流实现范式
 为了在推理时为模型分配更多算力，行业内主要采用以下三种技术路径：
