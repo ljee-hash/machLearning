@@ -609,7 +609,10 @@ if __name__ == "__main__":
 
 在 System 2 架构下，由于引入了多次尝试、搜索与验证，推理时的累计 Token 处理量呈几何级数增长。单样本在推理阶段实际消耗的 Forward Token 总量可表示为：
 
-$$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{step\_d}} \right) + L_{\text{final}}$$ 
+### 修正后的规范 LaTeX 公式
+
+$$N_{\text{total}} = \sum_{d=1}^{D} \left( B \times L_{\text{step}, d} \right) + L_{\text{final}}$$
+
 
 这种策略是现代高阶大模型攻克高等数学与高难度编程任务的核心底层逻辑。
 
@@ -621,9 +624,6 @@ $$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{ste
 
 ---
 
-### 修正后的规范 LaTeX 公式
-
-$$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{step\_d}} \right) + L_{\text{final}}$$
 
 ---
 
@@ -633,7 +633,7 @@ $$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{ste
 | --- | --- | --- |
 | **$D$** | 思考/深度探索步数 (Depth / Steps) | 模型进行反思、回溯（Backtracking）或分支搜索的迭代轮数。 |
 | **$B$** | 候选分支数 (Beam Width / Samples) | 在每一步探索中，模型并行生成或验证的采样分支数量。 |
-| **$L_{\text{step\_d}}$** | 中间思考步骤的 Token 长度 | 包含中间 CoT (Chain-of-Thought)、自我纠错（Self-Correction）及验证过程生成的 Token。 |
+| **$$L_{\text{step}, d}$$** | 中间思考步骤的 Token 长度 | 包含中间 CoT (Chain-of-Thought)、自我纠错（Self-Correction）及验证过程生成的 Token。 |
 | **$L_{\text{final}}$** | 最终输出的 Token 长度 | 经过多次搜索与验证后，最终整理并返回给用户的精简答案 Token 数。 |
 
 ---
