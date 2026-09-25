@@ -366,7 +366,9 @@ if __name__ == "__main__":
 * **文本 Prompt 长度 ($L_{text}$)**: `5` (案例 1, 2, 3) 或 `4` (案例 4)
 * **图像 Patch 序列长度 ($L_{img}$)**:
 
-$$\text{Patch 数量} = \left(\frac{H}{\text{patch\_size}}\right) \times \left(\frac{W}{\text{patch\_size}}\right) = \left(\frac{224}{16}\right) \times \left(\frac{224}{16}\right) = 14 \times 14 = 196$$
+
+$$\text{Patch 数量} = \left(\frac{H}{\text{patch\\_size}}\right) \times \left(\frac{W}{\text{patch\\_size}}\right) = \left(\frac{224}{16}\right) \times \left(\frac{224}{16}\right) = 14 \times 14 = 196$$
+
 
 
 
