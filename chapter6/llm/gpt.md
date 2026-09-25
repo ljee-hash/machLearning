@@ -608,7 +608,39 @@ if __name__ == "__main__":
 ##### 3. 推理算力扩展（Inference Scaling）Token 变化公式
 
 在 System 2 架构下，由于引入了多次尝试、搜索与验证，推理时的累计 Token 处理量呈几何级数增长。单样本在推理阶段实际消耗的 Forward Token 总量可表示为：
+
 $$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{step\_d}} \right) + L_{\text{final}}$$ 
+
 这种策略是现代高阶大模型攻克高等数学与高难度编程任务的核心底层逻辑。
+
+这段话非常准确地揭示了 OpenAI o1/o3 及 DeepSeek-R1 等 **System 2 (慢思考/思维链 Reasoning) 架构模型**在推理（Inference）阶段的核心算力机制。
+
+但公式中存在一处 **LaTeX 语法错误**：在 LaTeX 数学公式模式下，下划线 `_` 被用于下标，如果直接写入 `L_{\text{step_d}}` 会导致编译报错（如 `Missing $ inserted` 或 `'_' allowed only in math mode`）。
+
+需要将 `step_d` 中的下划线进行转义 `\_`，或写为规范的 LaTeX 文本表达。
+
+---
+
+### 修正后的规范 LaTeX 公式
+
+$$\text{System 2 推理 Token 数} = \sum_{d=1}^{D} \left( B \times L_{\text{step\_d}} \right) + L_{\text{final}}$$
+
+---
+
+### 公式参数解析与逻辑说明
+
+| 符号 | 含义 | 在 System 2 推理中的解释 |
+| --- | --- | --- |
+| **$D$** | 思考/深度探索步数 (Depth / Steps) | 模型进行反思、回溯（Backtracking）或分支搜索的迭代轮数。 |
+| **$B$** | 候选分支数 (Beam Width / Samples) | 在每一步探索中，模型并行生成或验证的采样分支数量。 |
+| **$L_{\text{step\_d}}$** | 中间思考步骤的 Token 长度 | 包含中间 CoT (Chain-of-Thought)、自我纠错（Self-Correction）及验证过程生成的 Token。 |
+| **$L_{\text{final}}$** | 最终输出的 Token 长度 | 经过多次搜索与验证后，最终整理并返回给用户的精简答案 Token 数。 |
+
+---
+
+### 核心结论
+
+1. **Test-time Compute（测试时计算/推理算力）**：System 2 架构的本质是将计算量从传统的“训练阶段”向“推理阶段”转移。通过消耗 $10\times \sim 100\times$ 甚至更高的 Forward Token，换取复杂逻辑推理、高难编程与数学证明突破。
+2.  Scaling Law 的转移：这种推理阶段的 Token 累加效应，开启了 **Inference Scaling Law（推理扩展定律）**，即给模型更多的“思考时间/ Token 预算”，其解答复杂问题的准确率会呈现对数/线性增长。
 ------------------------------
 
