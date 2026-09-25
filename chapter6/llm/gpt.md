@@ -351,6 +351,72 @@ if __name__ == "__main__":
 
 ---
 
+代码逻辑与 `test_native_multimodal_pipeline` 测试函数中的参数，对各个测试案例（任务）的 **Token 数量** 进行概述和总结
+
+1. **输入阶段（静态）**：图像经由 $16 \times 16$ Patch 化后会产生 **196 个 Token**，是输入序列的主要组成部分（占案例 1 混合输入的 $97.5\%$）。
+2. **输出阶段（动态）**：
+* 图文生成文本任务（Image-to-Text）最终输出 **10 个** 文本 Token IDs。
+* 文本生成图像任务（Text-to-Image）最终输出 **16 个** 离散视觉 Token IDs（Codebook IDs）。
+
+---
+
+#### 一、 关键基础参数说明
+
+* **Batch Size ($B$)**: `2`
+* **文本 Prompt 长度 ($L_{text}$)**: `5` (案例 1, 2, 3) 或 `4` (案例 4)
+* **图像 Patch 序列长度 ($L_{img}$)**:
+
+$$\text{Patch 数量} = \left(\frac{H}{\text{patch\_size}}\right) \times \left(\frac{W}{\text{patch\_size}}\right) = \left(\frac{224}{16}\right) \times \left(\frac{224}{16}\right) = 14 \times 14 = 196$$
+
+
+
+---
+
+#### 二、 各测试案例 Token 统计表
+
+以下按 **单样本 (Per Sample)** 和 **整批次 (Total Batch, Batch=2)** 分别统计：
+
+| 测试案例 / 任务 | 模态组成 | 单样本 Token 数 ($L$) | 批次总 Token 数 ($B \times L$) | 说明 / 维度公式 |
+| --- | --- | --- | --- | --- |
+| **案例 1 & 2: 多模态正向传播** | 文本 Prompt + 图像 Patches | **201** | **402** | $5 + 196 = 201$对应输入张量: `[2, 201, 512]` |
+| **案例 3: Image-to-Text 生成** | 1. 输入 Prompt (图文)2. 生成新 Token | **201****10** | **402****20** | 输入: $5 + 196 = 201$生成: `max_gen_len = 10` |
+| **案例 4: Text-to-Image 生成** | 1. 输入 Prompt (仅文本)2. 生成新 Token | **4****16** | **8****32** | 输入: `prompt_only_text` 长度为 $4$生成: `max_gen_len = 16` |
+
+---
+
+#### 三、 自回归生成过程中的计算 Token 变化（FLOPs 维度视角）
+
+如果在自回归生成（案例 3 与 案例 4）中未开启 **KV Cache**，每个 Step 都会重新计算完整序列，其**正向传播累计处理的 Token 总数**如下：
+
+##### 1. 案例 3 (Image-to-Text 生成)
+
+* **起始 Prompt Token 数**: $201$
+* **生成步数**: $10$ 步
+* **每步计算的序列长度**: $201, 202, 203, \dots, 210$
+* **单样本累计 Forward Token 数**:
+
+$$\sum_{t=1}^{10} (201 + t - 1) = \frac{(201 + 210) \times 10}{2} = 2055 \text{ Tokens}$$
+
+
+* **批次 (Batch=2) 累计 Forward Token 数**: $2055 \times 2 = \mathbf{4110 \text{ Tokens}}$
+
+##### 2. 案例 4 (Text-to-Image 生成)
+
+* **起始 Prompt Token 数**: $4$
+* **生成步数**: $16$ 步
+* **每步计算的序列长度**: $4, 5, 6, \dots, 19$
+* **单样本累计 Forward Token 数**:
+
+$$\sum_{t=1}^{16} (4 + t - 1) = \frac{(4 + 19) \times 16}{2} = 184 \text{ Tokens}$$
+
+
+* **批次 (Batch=2) 累计 Forward Token 数**: $184 \times 2 = \mathbf{368 \text{ Tokens}}$
+
+
+
+
+---
+
 ##### 三、 演进关键点总结
 
 1. **统一表征（Unified Representation）**：模型内部隐藏维度 $d_{model}$ 不再区分“这是视觉还是语言”，它表征的是**高维的跨模态通用概念（Concept）**。
