@@ -213,6 +213,8 @@
       * [7.6.3 泰文分词专题](chapter6/nlp6/thailand-segementation-words.md)
     * [7.7 语音合成专题](chapter6/nlp6/chinese-speech-words.md)
         * [7.7.1 Voice基础](chapter6/nlp6/voice-introduction.md)
+     * [LLM](chapter6/llm/gpt.md)
+        *    
 * [8 面试相关](chapter7/README.md)
     * [8.1 FLAG高频](chapter7/interview-flags.md)
     * [8.2 BATJ高频](chapter7/interview-batj.md)
