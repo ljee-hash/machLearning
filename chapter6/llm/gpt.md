@@ -644,3 +644,5 @@ $$N_{\text{total}} = \sum_{d=1}^{D} \left( B \times L_{\text{step}, d} \right) +
 2.  Scaling Law 的转移：这种推理阶段的 Token 累加效应，开启了 **Inference Scaling Law（推理扩展定律）**，即给模型更多的“思考时间/ Token 预算”，其解答复杂问题的准确率会呈现对数/线性增长。
 ------------------------------
 
+
+
