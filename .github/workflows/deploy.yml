@@ -1,10 +1,10 @@
-name: Build and Deploy GitBook to GitHub Pages
+name: Deploy GitBook to GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
 
+# 设置写入权限，允许 GitHub Actions 向仓库推送 gh-pages 分支
 permissions:
   contents: write
 
@@ -16,17 +16,17 @@ jobs:
       - name: Checkout master branch
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install HonKit and Book Plugins Locally
+      - name: Install HonKit and Book Plugins
         run: |
-          # 1. 在本地项目根目录安装 honkit
+          # 1. 本地安装 HonKit 编译内核
           npm install honkit --save-dev
 
-          # 2. 自动读取 book.json 并在本地安装所有插件
+          # 2. 自动解析 book.json 并本地安装所有依赖插件
           node -e '
             const fs = require("fs");
             if (fs.existsSync("book.json")) {
@@ -36,14 +36,14 @@ jobs:
                 .filter(p => typeof p === "string" && !p.startsWith("-"))
                 .map(p => p.startsWith("gitbook-plugin-") || p.startsWith("honkit-plugin-") ? p : "gitbook-plugin-" + p);
               if (pkgs.length > 0) {
-                console.log("正在本地安装插件:", pkgs.join(" "));
+                console.log("正在安装 GitBook 插件:", pkgs.join(" "));
                 require("child_process").execSync("npm install " + pkgs.join(" ") + " --save-dev", { stdio: "inherit" });
               }
             }
           '
 
       - name: Build GitBook
-        run: npx honkit build # 👈 使用 npx 触发本地 honkit 执行，确保能加载本地 node_modules 里的插件
+        run: npx honkit build
 
       - name: Deploy to gh-pages
         uses: Peaceiris/actions-gh-pages@v3
