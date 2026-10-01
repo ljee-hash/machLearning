@@ -1,0 +1,44 @@
+name: Build and Deploy GitBook to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master # 监听 master 分支的 push 操作
+
+# 设置 GitHub Actions 的写权限，以便能够推送修改到 gh-pages 分支
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+
+      # 2. 安装 Node.js (HonKit 需要 Node 18+)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 3. 安装 HonKit (GitBook 替代工具) 及插件
+      - name: Install Honkit
+        run: |
+          npm install honkit --global
+          if [ -f "book.json" ]; then honkit install; fi
+
+      # 4. 编译 Markdown 为静态 HTML（默认输出到 _book 目录）
+      - name: Build GitBook
+        run: honkit build
+
+      # 5. 自动部署到 gh-pages 分支
+      - name: Deploy to gh-pages
+        uses: Peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_book # 编译好的 HTML 目录
+          publish_branch: gh-pages
+          force_orphan: true # 保持历史干净（可选）
