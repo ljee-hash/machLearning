@@ -21,16 +21,26 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install HonKit and Book Plugins
+      - name: Install HonKit & Auto-Install Plugins
         run: |
-          # 1. 全局安装 HonKit 及插件 CLI 工具
-          npm install -g honkit honkit-plugin-cli
-          
-          # 2. 如果存在 package.json 则安装项目本地依赖
-          if [ -f "package.json" ]; then npm install; fi
-          
-          # 3. 自动根据 book.json 补全安装缺失的 gitbook 插件
-          if [ -f "book.json" ]; then npx honkit-plugin-cli install; fi
+          # 1. 全局安装 HonKit
+          npm install -g honkit
+
+          # 2. 读取 book.json 动态安装所有 gitbook 插件
+          node -e '
+            const fs = require("fs");
+            if (fs.existsSync("book.json")) {
+              const book = JSON.parse(fs.readFileSync("book.json", "utf8"));
+              const plugins = book.plugins || [];
+              const pkgs = plugins
+                .filter(p => typeof p === "string" && !p.startsWith("-"))
+                .map(p => "gitbook-plugin-" + p);
+              if (pkgs.length > 0) {
+                console.log("正在自动安装插件:", pkgs.join(" "));
+                require("child_process").execSync("npm install " + pkgs.join(" ") + " --save-dev", { stdio: "inherit" });
+              }
+            }
+          '
 
       - name: Build GitBook
         run: honkit build
