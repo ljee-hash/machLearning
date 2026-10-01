@@ -21,13 +21,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install HonKit and Plugins
+      - name: Install HonKit and Book Plugins
         run: |
-          npm install honkit --global
-          # 如果有 package.json，先安装本地依赖
+          # 1. 全局安装 HonKit 及插件 CLI 工具
+          npm install -g honkit honkit-plugin-cli
+          
+          # 2. 如果存在 package.json 则安装项目本地依赖
           if [ -f "package.json" ]; then npm install; fi
-          # 如果有 book.json 且使用了插件，可安装 honkit 插件扩展工具进行插件补全
-          if [ -f "book.json" ]; then npx honkit-plugin-cli install || true; fi
+          
+          # 3. 自动根据 book.json 补全安装缺失的 gitbook 插件
+          if [ -f "book.json" ]; then npx honkit-plugin-cli install; fi
 
       - name: Build GitBook
         run: honkit build
