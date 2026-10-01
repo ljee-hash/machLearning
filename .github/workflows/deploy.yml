@@ -19,12 +19,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # 👈 改用 Node 20
+          node-version: 20
 
-      - name: Install HonKit
+      - name: Install HonKit and Plugins
         run: |
           npm install honkit --global
-          if [ -f "book.json" ]; then honkit install; fi
+          # 如果有 package.json，先安装本地依赖
+          if [ -f "package.json" ]; then npm install; fi
+          # 如果有 book.json 且使用了插件，可安装 honkit 插件扩展工具进行插件补全
+          if [ -f "book.json" ]; then npx honkit-plugin-cli install || true; fi
 
       - name: Build GitBook
         run: honkit build
