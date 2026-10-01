@@ -42,6 +42,76 @@ jobs:
             }
           '
 
+      - name: Auto Generate SUMMARY.md from Directory Structure
+        run: |
+          # 自动递归扫描目录并重新生成 SUMMARY.md
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+
+            const IGNORE_DIRS = ["node_modules", "_book", ".git", ".github"];
+
+            function getTitle(filePath) {
+              try {
+                const content = fs.readFileSync(filePath, "utf8");
+                const match = content.match(/^#\s+(.+)$/m);
+                if (match) return match[1].trim();
+              } catch (e) {}
+              const basename = path.basename(filePath, ".md");
+              return basename.charAt(0).toUpperCase() + basename.slice(1);
+            }
+
+            function generateSummary(dir, depth = 0) {
+              let lines = [];
+              const indent = "  ".repeat(depth);
+              const items = fs.readdirSync(dir, { withFileTypes: true });
+
+              // 优先按文件名排序
+              items.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" }));
+
+              for (const item of items) {
+                if (item.name.startsWith(".")) continue;
+                const fullPath = path.join(dir, item.name);
+
+                if (item.isDirectory()) {
+                  if (IGNORE_DIRS.includes(item.name)) continue;
+                  
+                  // 查看文件夹内是否有 README.md 作索引
+                  const readmePath = path.join(fullPath, "README.md");
+                  const title = fs.existsSync(readmePath) ? getTitle(readmePath) : item.name;
+                  const relPath = fs.existsSync(readmePath) ? path.relative(".", readmePath) : "";
+
+                  if (relPath) {
+                    lines.push(`${indent}* [${title}](${relPath})`);
+                  } else {
+                    lines.push(`${indent}* ${item.name}`);
+                  }
+                  lines = lines.concat(generateSummary(fullPath, depth + 1));
+                } else if (item.isFile() && item.name.endsWith(".md")) {
+                  if (item.name.toUpperCase() === "SUMMARY.MD") continue;
+                  if (depth === 0 && item.name.toUpperCase() === "README.MD") continue; // 根目录 README 单独处理
+                  if (depth > 0 && item.name.toUpperCase() === "README.MD") continue;  // 子目录 README 已处理
+
+                  const relPath = path.relative(".", fullPath);
+                  const title = getTitle(fullPath);
+                  lines.push(`${indent}* [${title}](${relPath})`);
+                }
+              }
+              return lines;
+            }
+
+            let summaryContent = "# Summary\n\n";
+            if (fs.existsSync("README.md")) {
+              summaryContent += `* [前言](README.md)\n\n`;
+            }
+
+            const navLines = generateSummary(".");
+            summaryContent += navLines.join("\n") + "\n";
+
+            fs.writeFileSync("SUMMARY.md", summaryContent, "utf8");
+            console.log("成功自动更新 SUMMARY.md 导航栏条目！");
+          '
+
       - name: Fix LaTeX & Nunjucks Template Conflict
         run: |
           # 自动遍历所有 .md 文件，将包含大括号 {} 的 LaTeX 公式块包裹上 {% raw %}，防止模板引擎报错
@@ -61,7 +131,6 @@ jobs:
                   }
                 } else if (file.endsWith(".md")) {
                   let content = fs.readFileSync(fullPath, "utf8");
-                  // 匹配块级公式 $$...$$ 与行内公式 $...$
                   let updated = content.replace(/(\$\$[\s\S]*?\$\$|\$[^$\n]+\$)/g, (match) => {
                     if (match.includes("{") && !match.includes("{% raw %}")) {
                       return "{% raw %}" + match + "{% endraw %}";
@@ -71,7 +140,6 @@ jobs:
 
                   if (updated !== content) {
                     fs.writeFileSync(fullPath, updated, "utf8");
-                    console.log("已修复 LaTeX 公式模板转义:", fullPath);
                   }
                 }
               }
