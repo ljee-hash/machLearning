@@ -43,15 +43,16 @@ jobs:
           '
 
       - name: Auto Generate SUMMARY.md from Directory Structure
+        - name: Auto Generate SUMMARY.md from Directory Structure
         run: |
-          # 自动递归扫描目录并重新生成精确定制的 SUMMARY.md
+          # 自动递归扫描目录并使用智能多级数字排序生成精确定制的 SUMMARY.md
           node -e '
             const fs = require("fs");
             const path = require("path");
 
             const IGNORE_DIRS = ["node_modules", "_book", ".git", ".github"];
 
-            // 定义一级目录的显示先后顺序权重（数字越小越靠前，未定义的排在后面）
+            // 定义一级目录的显示先后顺序权重
             const chapterOrder = {
               "install": 1,
               "chapter1": 2,
@@ -75,12 +76,36 @@ jobs:
               return basename.charAt(0).toUpperCase() + basename.slice(1);
             }
 
+            // 增强版智能数字/版本号排序函数（完美解决 5.1.2 和 5.1.17 的排序错乱问题）
+            function smartCompare(aName, bName) {
+              // 提取字符串中的所有数字片段进行逐段比较
+              const getParts = (str) => str.split(/(\d+)/).map(v => /^\d+$/.test(v) ? parseInt(v, 10) : v);
+              const partsA = getParts(aName);
+              const partsB = getParts(bName);
+
+              const len = Math.max(partsA.length, partsB.length);
+              for (let i = 0; i < len; i++) {
+                if (partsA[i] === undefined) return -1;
+                if (partsB[i] === undefined) return 1;
+
+                if (typeof partsA[i] === "number" && typeof partsB[i] === "number") {
+                  if (partsA[i] !== partsB[i]) {
+                    return partsA[i] - partsB[i];
+                  }
+                } else {
+                  const res = String(partsA[i]).localeCompare(String(partsB[i]), undefined, { sensitivity: "base" });
+                  if (res !== 0) return res;
+                }
+              }
+              return 0;
+            }
+
             function generateSummary(dir, depth = 0) {
               let lines = [];
               const indent = "    ".repeat(depth);
               const items = fs.readdirSync(dir, { withFileTypes: true });
 
-              // 智能排序：如果是根目录，按照自定义权重排序；否则按文件名自然排序
+              // 智能排序
               items.sort((a, b) => {
                 if (depth === 0) {
                   const orderA = chapterOrder[a.name] !== undefined ? chapterOrder[a.name] : 999;
@@ -89,7 +114,7 @@ jobs:
                     return orderA - orderB;
                   }
                 }
-                return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" });
+                return smartCompare(a.name, b.name);
               });
 
               for (const item of items) {
@@ -131,7 +156,7 @@ jobs:
             summaryContent += navLines.join("\n") + "\n";
 
             fs.writeFileSync("SUMMARY.md", summaryContent, "utf8");
-            console.log("成功自动更新并按权重排好序的 SUMMARY.md 导航栏条目！");
+            console.log("成功自动更新并按智能多级数字排序的 SUMMARY.md！");
           '
 
       - name: Fix LaTeX & Nunjucks Template Conflict
