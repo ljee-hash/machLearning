@@ -43,7 +43,6 @@ jobs:
           '
 
       - name: Auto Generate SUMMARY.md from Directory Structure
-        - name: Auto Generate SUMMARY.md from Directory Structure
         run: |
           # 自动递归扫描目录并使用智能多级数字排序生成精确定制的 SUMMARY.md
           node -e '
@@ -78,7 +77,6 @@ jobs:
 
             // 增强版智能数字/版本号排序函数（完美解决 5.1.2 和 5.1.17 的排序错乱问题）
             function smartCompare(aName, bName) {
-              // 提取字符串中的所有数字片段进行逐段比较
               const getParts = (str) => str.split(/(\d+)/).map(v => /^\d+$/.test(v) ? parseInt(v, 10) : v);
               const partsA = getParts(aName);
               const partsB = getParts(bName);
