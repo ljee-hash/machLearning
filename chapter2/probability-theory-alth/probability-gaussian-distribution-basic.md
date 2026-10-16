@@ -116,10 +116,10 @@ graph TD
 拉普拉斯变换的核心思想是“降维打击”——把时域中难以直接求解的微积分问题，搬到复频域变成简单的乘除法。
 
 ```mermaid
-graph LR
-    A["时域 / 原空间 f(t) <br> (复杂的微分方程、概率积分)"] -->|Laplace 积分变换 <br> \int_0^\infty e^{-st} f(t) dt| B["复频域 / s 空间 F(s) <br> (简单的代数方程、多项式乘除)"]
-    B -->|代数求解 / 简化运算| C["得出频域解 F(s)"]
-    C -->|逆拉普拉斯变换 <br> \mathcal{L}^{-1}| D["返回时域 / 结果 f(t)"]
+ graph LR
+    A["原空间 / 时域: f(t) <br> (微分方程、概率积分)"] -->|Integral Transform: \int e^{-st} dt| B["复频域 / s 空间: F(s) <br> (代数方程、多项式运算)"]
+    B -->|Algebraic Solution| C["频域求解结果 F(s)"]
+    C -->|Inverse Transform| D["返回原空间: f(t)"]
     style A fill:#ffebee,stroke:#c62828,stroke-width:2px
     style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style D fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
