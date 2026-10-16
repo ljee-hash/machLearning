@@ -16,7 +16,8 @@
     "plugins": [
         "back-to-top-button",
         "popup",
-        "katex"
+        "katex",
+        "mermaid-full"
     ],
     "pdf": {
         "fontSize": 12,
